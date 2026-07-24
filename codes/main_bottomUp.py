@@ -1398,7 +1398,7 @@ class Part1_Scene(MovingCameraScene):
             Create(plane),
             Create(axes)
         )
-        self.wait(0.5)
+        self.wait(1.5)
 
         # dot at tip of vector
         tip_x = Dot(axes.c2p(6,4), color=dark_red, radius=0.07)
@@ -1415,7 +1415,7 @@ class Part1_Scene(MovingCameraScene):
             FadeIn(tip_y),
             Write(tip_y_text),
         )
-        self.wait(1)
+        self.wait(2)
 
         dot_line_distance =  DashedLine(
             start=axes.c2p(6,4),
@@ -1435,7 +1435,7 @@ class Part1_Scene(MovingCameraScene):
         self.play(
             Write(text_dxy),
         )
-        self.wait(0.5)
+        self.wait(2)
         self.play(
             FadeOut(text_distance),
         )
@@ -1455,12 +1455,12 @@ class Part1_Scene(MovingCameraScene):
         self.play(
             Transform(dot_line_distance, vector_amb),
         )
-        self.wait(0.5)
+        self.wait(1.5)
         self.play(
             Write(text_vec_amb),
             Write(text_norm_ab),
         )
-        self.wait(1)
+        self.wait(2)
 
         vector_a = Arrow(
             start=axes.c2p(0,0),
@@ -1489,12 +1489,12 @@ class Part1_Scene(MovingCameraScene):
             GrowArrow(vector_a, run_time=1.2, rate_func=rush_from),
             Write(text_vec_a),
         )
-        self.wait(0.5)
+        self.wait(1.5)
         self.play(
             GrowArrow(vector_b, run_time=1.2, rate_func=rush_from),
             Write(text_vec_b),
         )
-        self.wait(0.5)
+        self.wait(1.5)
 
         text_vec_amb_2 = MathTex(r"\vec{BA} = ",r"\vec{a} - \vec{b}",color=dark_pink).move_to(vector_amb.get_center()+0.5*UP+7*LEFT).scale(2)
         text_norm_ab_2 = MathTex(r" = ",r"\|\vec{a} - \vec{b}\|",color=dark_orange).next_to(text_norm_ab,DOWN).scale(1.5)
@@ -1502,11 +1502,11 @@ class Part1_Scene(MovingCameraScene):
         self.play(
             TransformFromCopy(text_vec_amb, text_vec_amb_2),
         )
-        self.wait(0.5)
+        self.wait(1.5)
         self.play(
             TransformFromCopy(VGroup(text_vec_amb_2,text_norm_ab), text_norm_ab_2),
         )
-        self.wait(0.5)
+        self.wait(1.5)
 
         fade_out_list = [
             plane, axes, tip_x , tip_x_text , tip_y , tip_y_text , text_dxy , dot_line_distance,
@@ -1542,32 +1542,32 @@ class Part1_Scene(MovingCameraScene):
         self.play(
             Write(prove_1),
         )
-        self.wait(1)
+        self.wait(2)
 
         self.play(
             Create(rect_prove_1),
         )
-        self.wait(0.3)
+        self.wait(1)
         self.play(
             TransformFromCopy(prove_1[1], step_1),
         )
-        self.wait(0.3)
+        self.wait(1.3)
         self.play(
             TransformFromCopy(distance[2],step_2),
         )
-        self.wait(0.3)
+        self.wait(1.3)
         self.play(
             Write(step_2to3),
         )
-        self.wait(0.1)
+        self.wait(0.5)
         self.play(
             TransformFromCopy(VGroup(step_2to3,step_2),step_3),
         )
-        self.wait(0.3)
+        self.wait(1.3)
         self.play(
             Write(step_4),
         )
-        self.wait(0.3)
+        self.wait(1.3)
         # self.play(
         #     Create(square_for_end_proof),
         # )
@@ -1611,7 +1611,7 @@ class Part1_Scene(MovingCameraScene):
             FadeIn(tip_y),
             Write(tipy_text),
         )
-        self.wait(0.3)
+        self.wait(1)
 
         dot_line_distance =  Arrow(
             start=axes.c2p(2,1),
@@ -1626,7 +1626,7 @@ class Part1_Scene(MovingCameraScene):
         self.play(
             GrowArrow(dot_line_distance),
         )
-        self.wait(0.5)
+        self.wait(2)
 
         dot_line_distance_new = Line(
             start=axes.c2p(2,1),
@@ -1657,6 +1657,7 @@ class Part1_Scene(MovingCameraScene):
         self.play(
             FadeOut(VGroup(*fade_out_list)),
         )
+        self.wait(1)
 
     def scene5_subScene2(self, title, prove_1, prove_2, distance):
         """prove d is a meter part 2"""
@@ -1683,49 +1684,49 @@ class Part1_Scene(MovingCameraScene):
         self.play(
             TransformMatchingTex(prove_1, prove_2),
         )
-        self.wait(0.3)
+        self.wait(1.3)
 
         self.play(
             Create(rect_prove_2),
         )
-        self.wait(0.3)
+        self.wait(1.3)
         self.play(
             TransformFromCopy(prove_2[1], step_1),
         )
-        self.wait(0.3)
+        self.wait(1.3)
         self.play(
             TransformFromCopy(distance[2],step_2),
         )
-        self.wait(0.3)
+        self.wait(1.3)
         self.play(
             Write(step_3),
         )
-        self.wait(0.3)
+        self.wait(1.3)
         self.play(
             Write(step_3to4),
         )
-        self.wait(0.1)
+        self.wait(0.5)
         self.play(
             TransformFromCopy(VGroup(step_3to4,step_3),step_4),
         )
-        self.wait(0.3)
+        self.wait(1.3)
         self.play(
             Write(step_5),
         )
-        self.wait(0.3)
+        self.wait(1.3)
         self.play(
             Write(step_6),
         )
-        self.wait(0.3)
+        self.wait(1.3)
         # self.play(
         #     Create(square_for_end_proof),
         # )
         # self.wait(0.3)
 
-        step_1.set_color(dark_red)
-        step_6.set_color(dark_red)
+        # step_1.set_color(dark_red)
+        # step_6.set_color(dark_red)
 
-        self.wait(0.3)
+        self.wait(1.3)
 
         # shape
 
@@ -1750,7 +1751,7 @@ class Part1_Scene(MovingCameraScene):
         self.play(
             FadeTransform(VGroup(prove_2_group,rect_prove_2),VGroup(plane,axes)),
         )
-        self.wait(0.5)
+        self.wait(1.5)
 
         tip_x = Dot(axes.c2p(6,4), color=dark_orange, radius=0.09)
         tipx_text = MathTex("x",color=BLACK).next_to(tip_x,DOWN)
@@ -1791,7 +1792,7 @@ class Part1_Scene(MovingCameraScene):
         self.play(
             GrowArrow(vector_1),
         )
-        self.wait(1)
+        self.wait(2)
 
         self.play(
             vector_1.animate.shift(8*LEFT),
@@ -1804,7 +1805,7 @@ class Part1_Scene(MovingCameraScene):
         self.play(
             GrowArrow(vector_2),
         )
-        self.wait(1)
+        self.wait(2)
 
         self.play(
             vector_2.animate.shift(7.7*LEFT+0.4*DOWN),
@@ -1822,7 +1823,7 @@ class Part1_Scene(MovingCameraScene):
             comp_line.animate.move_to(vector_2.get_center()),
             run_time=1
         )
-        self.wait(1)
+        self.wait(2)
 
         fade_out_list = [
             plane, axes, tip_x ,tip_y , tipx_text, tipy_text, vector_1, vector_2, comp_line
@@ -1830,6 +1831,7 @@ class Part1_Scene(MovingCameraScene):
         self.play(
             FadeOut(VGroup(*fade_out_list)),
         )
+        self.wait(2)
 
     def scene5_subScene3(self, title, prove_2, prove_3, distance):
         """prove d is a meter part 3"""
@@ -1875,55 +1877,55 @@ class Part1_Scene(MovingCameraScene):
         self.play(
             TransformMatchingTex(prove_2, prove_3),
         )
-        self.wait(1)
+        self.wait(2)
 
         self.play(
             Create(rect_prove_2),
         )
-        self.wait(0.3)
+        self.wait(1.3)
         self.play(
             TransformFromCopy(prove_2[1], step_1),
         )
-        self.wait(0.3)
+        self.wait(1.3)
         self.play(
             TransformFromCopy(distance[2],step_2),
         )
-        self.wait(0.3)
+        self.wait(1.3)
         self.play(
             Write(step_3),
         )
-        self.wait(0.3)
+        self.wait(1.3)
         self.play(
             Create(rect_step_3_x),
         )
-        self.wait(0.1)
+        self.wait(0.5)
         self.play(
             Create(rect_step_3_y),
         )
-        self.wait(0.1)
+        self.wait(0.5)
         self.play(
             Write(step_3to4),
         )
-        self.wait(0.1)
+        self.wait(0.5)
         self.play(
             TransformFromCopy(VGroup(step_3to4,step_3),step_4),
         )
-        self.wait(0.3)
+        self.wait(1.3)
         self.play(
             Write(step_5),
         )
-        self.wait(0.3)
+        self.wait(1.3)
         # self.play(
         #     Create(square_for_end_proof),
         # )
         # self.wait(0.3)
 
-        step_1.set_color(dark_red)
-        step_5.set_color(dark_red)
-        step_5.set_color_by_tex(r" = ",BLACK)
-        step_4.set_color_by_tex(r" \le ",dark_red)
+        # step_1.set_color(dark_red)
+        # step_5.set_color(dark_red)
+        # step_5.set_color_by_tex(r" = ",BLACK)
+        # step_4.set_color_by_tex(r" \le ",dark_red)
 
-        self.wait(0.3)
+        self.wait(1.3)
 
         # shape
 
@@ -1962,7 +1964,7 @@ class Part1_Scene(MovingCameraScene):
             FadeIn(tip_y),
             Write(tipy_text),
         )
-        self.wait(0.5)
+        self.wait(2)
 
         vector_1 = Arrow(
             start=axes.c2p(2,1),
@@ -2018,7 +2020,7 @@ class Part1_Scene(MovingCameraScene):
         self.play(
             GrowArrow(vector_3),
         )
-        self.wait(1)
+        self.wait(2)
         prove_3.set_color_by_tex(r"d(x,y)",BLACK)
         prove_3.set_color_by_tex(r"d(x,z)",BLACK)
         prove_3.set_color_by_tex(r"d(z,y)",BLACK)
@@ -2438,56 +2440,58 @@ class Part1_Scene(MovingCameraScene):
         # self.wait(0.5)
 
         # constructing metrics with norms
-        self.scene5_subScene0(title)
+        # self.scene5_subScene0(title)
 
-        # # proof needed things
-        # distance = MathTex(r"d(x,y) ",r" = ",r"\|x-y\|",color=BLACK).scale(2).move_to(title.get_center()+0.2*DOWN)
-        # rect_distance = SurroundingRectangle(
-        #     distance,
-        #     color=dark_blue,        
-        #     buff=0.3,          
-        #     fill_opacity=0.1,    
-        #     stroke_width=5,    
-        #     corner_radius=0.15 
+        # proof needed things
+        distance = MathTex(r"d(x,y) ",r" = ",r"\|x-y\|",color=BLACK).scale(2).move_to(title.get_center()+0.2*DOWN)
+        rect_distance = SurroundingRectangle(
+            distance,
+            color=dark_blue,        
+            buff=0.3,          
+            fill_opacity=0.1,    
+            stroke_width=5,    
+            corner_radius=0.15 
+        )
+
+        # self.play(
+        #     Create(rect_distance),
+        #     Write(distance),
         # )
+        # self.wait(1)
 
-        # # self.play(
-        # #     Create(rect_distance),
-        # #     Write(distance),
-        # # )
-        # # self.wait(1)
+        text_claim1 = MathTex(r"\text{Claim : }",color=BLACK).scale(1.1)
+        text_claim2 = MathTex(r"d \text{ is a } " ,r"\text{metric}",color=BLACK).scale(1.1)
+        text_claim2.set_color_by_tex(r"\text{metric}",color=dark_blue)
+        text_claim = VGroup(text_claim1, text_claim2).arrange(DOWN,buff=0.3)
 
-        # text_claim = MathTex(r"\text{Claim : } \\ d \text{ is a } " ,r"\text{metric}",color=BLACK).scale(1.1)
-        # text_claim.set_color_by_tex(r"\text{metric}",color=dark_blue)
+        # self.play(
+        #     VGroup(distance,rect_distance).scale(1).animate.to_edge(UL),
+        #     Write(text_claim.move_to(rect_distance.get_right()+0.5*RIGHT+0.2*DOWN)),
+        # )
+        # self.wait(2)
 
-        # # self.play(
-        # #     VGroup(distance,rect_distance).scale(1).animate.to_edge(UL),
-        # #     Write(text_claim.move_to(rect_distance.get_right()+0.5*RIGHT+0.2*DOWN)),
-        # # )
-        # # self.wait(1)
-
-        # # prove part 1
-        # prove_1 = MathTex(r"\quad",r"d(x,y) = 0",r"\iff",r"x = y",color=BLACK).scale(1.5).move_to(title.get_center()+2*DOWN)
-        # # proof_1_needed = [
-        # #     prove_1, distance
-        # # ]
-        # # self.scene5_subScene1(title, *proof_1_needed)
-
-        # # prove part 2
-        # prove_2 = MathTex(r"\quad",r"d(x,y)",r" = ",r"d(y,x)",color=BLACK).scale(1.5).move_to(title.get_center()+2*DOWN)
-        # # proof_2_needed = [
-        # #     prove_1, prove_2, distance
-        # # ]
-        # VGroup(distance,rect_distance).to_edge(UL)
-        # text_claim.move_to(rect_distance.get_right()+3.5*RIGHT)
-        # self.add(prove_2, distance, rect_distance, text_claim)
-        # # self.scene5_subScene2(title,*proof_2_needed)
-
-        # # # prove part 3
-        # prove_3 = MathTex(r"\quad",r"d(x,y)",r" \le ",r"d(x,z)",r" + ",r"d(z,y)",color=BLACK).scale(1.5).move_to(title.get_center()+2*DOWN)
-        # proof_3_needed = [
-        #     prove_2, prove_3, distance
+        # prove part 1
+        prove_1 = MathTex(r"\quad",r"d(x,y) = 0",r"\iff",r"x = y",color=BLACK).scale(1.5).move_to(title.get_center()+2*DOWN)
+        # proof_1_needed = [
+        #     prove_1, distance
         # ]
+        # self.scene5_subScene1(title, *proof_1_needed)
+
+        # prove part 2
+        prove_2 = MathTex(r"\quad",r"d(x,y)",r" = ",r"d(y,x)",color=BLACK).scale(1.5).move_to(title.get_center()+2*DOWN)
+        # proof_2_needed = [
+        #     prove_1, prove_2, distance
+        # ]
+        VGroup(distance,rect_distance).scale(1).to_edge(UL)
+        text_claim.move_to(rect_distance.get_right()+3.5*RIGHT+0.2*DOWN)
+        # self.add(prove_2, distance, rect_distance, text_claim)
+        # self.scene5_subScene2(title,*proof_2_needed)
+
+        # # prove part 3
+        prove_3 = MathTex(r"\quad",r"d(x,y)",r" \le ",r"d(x,z)",r" + ",r"d(z,y)",color=BLACK).scale(1.5).move_to(title.get_center()+2*DOWN)
+        proof_3_needed = [
+            prove_2, prove_3, distance
+        ]
         # self.scene5_subScene3(title, *proof_3_needed)
 
         # fade_out_list = [
@@ -2498,7 +2502,7 @@ class Part1_Scene(MovingCameraScene):
         # )
 
         # normed space
-        # self.scene5_subScene4(title)
+        self.scene5_subScene4(title)
 
     def scene4_subScene0(self,title):
         # length
