@@ -284,16 +284,16 @@ class Part1_Scene(MovingCameraScene):
         # self.scene4(title)
 
         # from norm to metrics
-        topic_number = 1
-        title = self.scene3(topic_number,False)
-
-        self.scene5(title)
-
-        # Cauchy Sequences : The Mystery of Nearness
-        # topic_number = 2
+        # topic_number = 1
         # title = self.scene3(topic_number,False)
 
-        # self.scene6(title)
+        # self.scene5(title)
+
+        # Cauchy Sequences : The Mystery of Nearness
+        topic_number = 2
+        title = self.scene3(topic_number,False)
+
+        self.scene6(title)
 
         # Banach Spaces : The Kingdom of Completeness
         # topic_number = 3
@@ -374,24 +374,24 @@ class Part1_Scene(MovingCameraScene):
         self.play(
             Write(text_xn[1]),
         )
-        self.wait(0.5)
+        self.wait(2)
         self.play(
             Create(rect_converge),
             Write(text_converge),
         )
         self.wait(1)
         self.play(
-            Write(converge_def[0]),
+            Write(converge_def),
         )
-        self.wait(0.5)
-        self.play(
-            Write(converge_def[1]),
-        )
-        self.wait(0.5)
+        # self.wait(0.5)
+        # self.play(
+        #     Write(converge_def[1]),
+        # )
+        self.wait(1.5)
         self.play(
             FadeOut(converge_def),
         )
-        self.wait(0.5)
+        self.wait(1)
 
         # shape
 
@@ -437,6 +437,7 @@ class Part1_Scene(MovingCameraScene):
             Write(text_x),
             run_time=2
         )
+        self.wait(1)
 
         limit_dot = Dot(axes.c2p(5.5,-3.5),color=dark_red, radius=0.08).shift(0.3*DR)
         text_y_limit = MathTex(r"y",color=BLACK).next_to(limit_dot, UP, buff=0.2)
@@ -446,6 +447,7 @@ class Part1_Scene(MovingCameraScene):
             Create(limit_dot),
             Write(text_y_limit),
         )
+        self.wait(1)
 
         points = [
             axes.c2p(-2,4),
@@ -525,7 +527,7 @@ class Part1_Scene(MovingCameraScene):
 
         # part 2
 
-        smooth_shape_copy = smooth_shape.copy().set_color(dark_orange).scale(0.85).shift(0.45*UL)
+        smooth_shape_copy = smooth_shape.copy().set_color(dark_orange).scale(0.88).shift(0.3*UL)
         text_y = Text("Y",color=BLACK).next_to(smooth_shape_copy,RIGHT) #.shift(0.4*DOWN)
         self.play(
             FadeOut(arrow),
@@ -533,6 +535,7 @@ class Part1_Scene(MovingCameraScene):
             Write(text_y),
             run_time=1
         )
+        self.wait(1)
 
         cross_img = ImageMobject("images/red_cross.png").scale(2).move_to(text_converge)
         self.add(cross_img)
@@ -568,9 +571,9 @@ class Part1_Scene(MovingCameraScene):
             Create(rect_text_expalin),
             Write(text_explain),
         )
-        self.wait(0.5)
+        self.wait(1)
         space.set_color(dark_red)
-        self.wait(0.5)
+        self.wait(2)
 
         fade_out_list = [
             rect_text_expalin, text_explain, text_converge, rect_converge, text_xn, grid,
@@ -590,13 +593,13 @@ class Part1_Scene(MovingCameraScene):
         # come_up_img = ImageMobject("come up with.png").scale(3).to_edge(UP)
         # self.add(come_up_img)
 
-        question = MathTex(r"\text{How can we define a space-independent idea of convergence?}",color=BLACK).scale(0.9)
+        question = MathTex(r"\text{How can we define a metric-independent idea of convergence?}",color=BLACK).scale(0.9)
         group, box, think_img, find_img = self.ask_question(question,True,True)
 
         group_GroupBoxQuetion = VGroup(group, box)
         group_GroupBoxQuetion.shift(2*UP)
         think_img.scale(1.2).shift(2.8*DOWN)
-        self.add(think_img)
+        # self.add(think_img)
         self.wait(0.2)
         self.play(
             FadeIn(group_GroupBoxQuetion),
@@ -608,7 +611,7 @@ class Part1_Scene(MovingCameraScene):
         ]
         self.play(
             FadeOut(VGroup(*fade_out_list)),
-            FadeOut(think_img),
+            # FadeOut(think_img),
         )
     
     def scene6_subScene2(self, title):
@@ -1068,7 +1071,7 @@ class Part1_Scene(MovingCameraScene):
         # self.scene6_subScene0(title)
 
         # Intuitive Idea
-        # self.scene6_subScene1(title)
+        self.scene6_subScene1(title)
 
         # Formal Definition of Cauchy
         # title_cauchy_text = self.scene6_subScene2(title)
@@ -1077,7 +1080,7 @@ class Part1_Scene(MovingCameraScene):
         # self.scene6_subScene3(title, title_cauchy_text)
 
         ## ( Convergence <-> Cauchy ) & Question
-        self.scene6_subScene4(title)
+        # self.scene6_subScene4(title)
 
         # Formal Definition of Completeness
         # self.scene6_subScene5(title)
@@ -2106,6 +2109,7 @@ class Part1_Scene(MovingCameraScene):
         self.play(
             FadeIn(recall_norm_space_all_shapes),
         )
+        self.wait(1)
 
         text_metric_space = MathTex(r"\text{Metric space}",color=dark_green).move_to(title.get_center()+DOWN).scale(2)
         text_metric_space_parts = MathTex(r"( \, ",r"X",r" \, , \, ",r"d(x,y) = \|x - y\|",r" \, )",color=dark_blue,arg_separator="  ").move_to(text_metric_space.get_center()+1.6*DOWN).scale(2)
@@ -2231,7 +2235,7 @@ class Part1_Scene(MovingCameraScene):
         # self.play(
         #     Write(text_metric_space),
         # )
-        self.wait(1)
+        self.wait(2)
 
         # fade_out_list = [text_metric_space ,text_metric_space_parts, rect_x, 
         #                  arrow_x, rect_vec_x, text_vector_space,
@@ -2295,9 +2299,9 @@ class Part1_Scene(MovingCameraScene):
         #     color=BLACK,
         # )
         example_group_part2 = MathTex(
-            r"\|\alpha x\|",
-            r"= \sum_{j=1}^{\infty}\frac{1}{2^j}\frac{|\alpha\xi_j|}{1+|\alpha\xi_j|}",
-            r"= \sum_{j=1}^{\infty}\frac{1}{2^j}\frac{|\alpha|\,|\xi_j|}{1+|\alpha|\,|\xi_j|}",
+            r"\|2 \, x\|",
+            r"= \sum_{j=1}^{\infty}\frac{1}{2^j}\frac{|2 \,\xi_j|}{1+|2 \,\xi_j|}",
+            r"= \sum_{j=1}^{\infty}\frac{1}{2^j}\frac{|2 \,|\,|\xi_j|}{1+|2 \,|\,|\xi_j|}",
             color=BLACK,
         )
         # example_group_part3 = MathTex(
@@ -2309,9 +2313,9 @@ class Part1_Scene(MovingCameraScene):
             color=dark_red,
         )
         example_group_part5 = MathTex(
-            r"\sum_{j=1}^{\infty}\frac{1}{2^j}\frac{|\alpha|\,|\xi_j|}{1+|\xi_j|}",
-            r"= |\alpha|\sum_{j=1}^{\infty}\frac{1}{2^j}\frac{|\xi_j|}{1+|\xi_j|}",
-            r"= |\alpha|\,\|x\|.",
+            r"|2 \,|\,\|x\|",
+            r"= |2 \,|\sum_{j=1}^{\infty}\frac{1}{2^j}\frac{|\xi_j|}{1+|\xi_j|}",
+            r"= \sum_{j=1}^{\infty}\frac{1}{2^j}\frac{|2 \,|\,|\xi_j|}{1+|\xi_j|}",
             color=BLACK,
         )
         # example_group_part6 = MathTex(
@@ -2356,10 +2360,11 @@ class Part1_Scene(MovingCameraScene):
         self.play(
             Write(text_counterexample),
         )
+        self.wait(1)
         self.play(
             Write(not_reverse),
         )
-        self.wait(0.5)
+        self.wait(1)
         self.play(
             Create(rect_not_reverse),
         )
@@ -2368,16 +2373,16 @@ class Part1_Scene(MovingCameraScene):
             Write(title_text),
             Write(counter_example1),
         )
-        self.wait(0.5)
+        self.wait(1)
         self.play(
             Write(counter_example2),
         )
-        self.wait(0.5)
+        self.wait(1)
         counter_example3.move_to(counter_example2.get_center())
         self.play(
             TransformMatchingTex(counter_example2, counter_example3),
         )
-        self.wait(0.5)
+        self.wait(2)
         self.play(
             TransformMatchingShapes(
                 VGroup(*[rect_counter_example_part1, counter_example1, counter_example3]),
@@ -2400,17 +2405,17 @@ class Part1_Scene(MovingCameraScene):
 
         self.wait(1)
 
-        circle_metric = Circle(4,dark_pink,fill_color=dark_pink,fill_opacity=0.1)
-        text_metric_space = MathTex(r"\text{Metric space}",color=dark_pink).scale(2).move_to(circle_metric.get_center()+2.3*UP)
+        circle_metric = Circle(4,dark_pink,fill_color=dark_pink,fill_opacity=0)
+        text_metric_space = MathTex(r"\text{Metric spaces}",color=dark_pink).scale(2).move_to(circle_metric.get_center()+2.3*UP)
 
-        circle_norm = Circle(2.8,dark_purple,fill_color=dark_purple,fill_opacity=0.1).shift(1*DOWN)
-        text_norm_space = MathTex(r"\text{Normed space}",color=dark_purple).scale(1.5).move_to(circle_norm.get_center()+1.3*UP)
+        circle_norm = Circle(2.8,dark_purple,fill_color=dark_purple,fill_opacity=0).shift(1*DOWN)
+        text_norm_space = MathTex(r"\text{Normed spaces}",color=dark_purple).scale(1.5).move_to(circle_norm.get_center()+1.1*UP)
 
         self.play(
             Write(text_norm_space),
             Create(circle_norm),
         )
-        self.wait(0.5)
+        self.wait(1.5)
         self.play(
             TransformFromCopy(VGroup(text_norm_space, circle_norm), VGroup(text_metric_space, circle_metric)),
         )
