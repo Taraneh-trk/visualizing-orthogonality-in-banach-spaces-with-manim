@@ -620,6 +620,7 @@ class Part1_Scene(MovingCameraScene):
         self.play(
             Write(title_cauchy_text),
         )
+        self.wait(1)
         
         part0 = MathTex(r"A\ sequence\ \{x_n\}\ in\ a\ metric\ space\ (X,d)\ ",color=BLACK) #(or fundamental)
         part0_to_1 = MathTex(r"\Longleftrightarrow",color=BLACK)
@@ -639,7 +640,7 @@ class Part1_Scene(MovingCameraScene):
         self.play(
             FadeIn(def_group),
         )
-        self.wait(1)
+        self.wait(2)
         self.play(
             FadeOut(def_group),
             # FadeOut(def_group),
@@ -745,7 +746,7 @@ class Part1_Scene(MovingCameraScene):
         self.wait(1)
 
         prop = MathTex(
-            r"\text{Intrinsic property}\\ \text{of the sequence }",
+            r"\text{Intrinsic property}\\ \text{of the metric }",
             color=BLACK
         )
 
@@ -774,7 +775,7 @@ class Part1_Scene(MovingCameraScene):
             Create(rect_text_expalin),
             Write(text_explain),
         )
-        self.wait(1)
+        self.wait(2)
         space[0].set_color(dark_red)
         self.wait(1)
 
@@ -804,7 +805,7 @@ class Part1_Scene(MovingCameraScene):
     def scene6_subScene4(self, title):
 
         book_brain_img = ImageMobject("images/book_brain.png").scale(1.5).to_corner(DL).shift(0.3*DL)
-        self.add(book_brain_img)
+        # self.add(book_brain_img)
 
         convergent_implies_cauchy = MathTex(
             r"\text{Convergent} \;\Rightarrow\; \text{Cauchy}",color=BLACK
@@ -916,12 +917,12 @@ class Part1_Scene(MovingCameraScene):
         )
 
         # -------------------- Shape Y --------------------
-        smooth_shape_copy = smooth_shape.copy()
-        smooth_shape_copy.set_color(dark_orange)
-        smooth_shape_copy.scale(0.85)
-        smooth_shape_copy.shift(0.45*UL)
+        # smooth_shape_copy = smooth_shape.copy()
+        # smooth_shape_copy.set_color(dark_orange)
+        # smooth_shape_copy.scale(0.85)
+        # smooth_shape_copy.shift(0.45*UL)
 
-        text_y = Text("Y", color=BLACK).next_to(smooth_shape_copy, RIGHT)
+        # text_y = Text("Y", color=BLACK).next_to(smooth_shape_copy, RIGHT)
 
         # -------------------- Group Everything --------------------
         all_objects = VGroup(
@@ -932,11 +933,16 @@ class Part1_Scene(MovingCameraScene):
             *dots,
             *text_xi,
             arrow,
-            smooth_shape_copy,
-            text_y,
+            # smooth_shape_copy,
+            # text_y,
         )
 
         all_objects.scale(0.85).shift(0.5*DOWN+0.3*RIGHT)
+
+        self.add(grid)
+        self.add(all_objects)
+
+        return 
 
         self.play(
             FadeIn(grid),
@@ -960,7 +966,7 @@ class Part1_Scene(MovingCameraScene):
             Write(group),
             run_time=1
         )
-        self.wait(1)
+        self.wait(2)
 
         example_group = VGroup(counter_example, limit_counter_example).arrange(DOWN, buff=0.5)
         group, box = self.show_example(title, example_group,"Counterexample",True)
@@ -971,14 +977,14 @@ class Part1_Scene(MovingCameraScene):
             Write(group),
             run_time=1
         )
-        self.wait(1)
+        self.wait(2)
 
         fade_out_list = [
             cha_to_con, example_group_box,
         ]
         self.play(
             FadeOut(VGroup(*fade_out_list)),
-            FadeOut(book_brain_img),
+            # FadeOut(book_brain_img),
         )
         self.play(
             FadeOut(grid),
@@ -988,7 +994,7 @@ class Part1_Scene(MovingCameraScene):
     def scene6_subScene5(self, title):
         book_brain_img = ImageMobject("images/find_img.png").scale(1.7).to_corner(DL).shift(0.3*DL+3*LEFT+UP*4)
         book_brain_img.rotate(180*DEGREES)
-        self.add(book_brain_img)
+        # self.add(book_brain_img)
 
         self.wait(1)
 
@@ -1007,7 +1013,7 @@ class Part1_Scene(MovingCameraScene):
             Create(box),
             Write(group),
         )
-        self.wait(0.5)
+        self.wait(1.5)
         self.play(
             FadeOut(final_group),
         )
@@ -1043,14 +1049,14 @@ class Part1_Scene(MovingCameraScene):
             Write(group),
             run_time=1
         )
-        self.wait(1)
+        self.wait(2)
 
         fade_out_list = [
             group, box, title_compelte_text
         ]
         self.play(
             FadeOut(VGroup(*fade_out_list)),
-            FadeOut(book_brain_img),
+            # FadeOut(book_brain_img),
         )
 
         self.wait(1)
@@ -1071,7 +1077,7 @@ class Part1_Scene(MovingCameraScene):
         # self.scene6_subScene0(title)
 
         # Intuitive Idea
-        self.scene6_subScene1(title)
+        # self.scene6_subScene1(title)
 
         # Formal Definition of Cauchy
         # title_cauchy_text = self.scene6_subScene2(title)
@@ -1080,7 +1086,7 @@ class Part1_Scene(MovingCameraScene):
         # self.scene6_subScene3(title, title_cauchy_text)
 
         ## ( Convergence <-> Cauchy ) & Question
-        # self.scene6_subScene4(title)
+        self.scene6_subScene4(title)
 
         # Formal Definition of Completeness
         # self.scene6_subScene5(title)
@@ -1252,7 +1258,7 @@ class Part1_Scene(MovingCameraScene):
         self.play(
             Write(text_incomplete),
         )
-        self.wait(1)
+        self.wait(2)
         
         limit_points_seq_2 = [
             Dot(axes.c2p(-2,4), stroke_color=dark_pink, stroke_width=2, fill_color=dark_pink, fill_opacity=1, radius=0.12).shift(0.3*DR + 1.5*RIGHT),
@@ -1266,14 +1272,14 @@ class Part1_Scene(MovingCameraScene):
                 VGroup(*limit_points_seq_2),
             ),
         )
-        self.wait(1)
+        self.wait(2)
         text_complete_part1 = MathTex(r"\text{Complete}",color=BLACK).scale(1.5)
         text_complete_part2 = MathTex(r"\text{  Space  }",color=BLACK).scale(1.5)
         text_complete = VGroup(text_complete_part1, text_complete_part2).arrange(DOWN).to_corner(UL)
         self.play(
             Transform(text_incomplete, text_complete),
         )
-        self.wait(1)
+        self.wait(2)
 
         fade_out_list = [
             smooth_shape,
