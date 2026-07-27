@@ -103,9 +103,9 @@ class TitleScene(Scene):
 
         # self.scene1()
 
-        # self.scene2()
+        self.scene2()
 
-        self.scene3()
+        # self.scene3()
 
     def scene3(self,):
         pic = ImageMobject("images/end_pic.png").scale(2)
@@ -373,14 +373,20 @@ class TitleScene(Scene):
             r"C ( [-1,1] )",
             color=dark_pink,
         ).scale(2)
-        # space_definition_part2 = MathTex(
-        #     r"C ( [-1.1] )",
-        #     color=dark_pink,
-        # ).scale(1.5)
+        
         space_definition_part3 = MathTex(
             r" + ",
             color=dark_pink,
         ).scale(2)
+        space_definition_part21 = MathTex(
+            r"\|f\|_{\infty} = \sup_{x \in [-1,1]} |f(x)|",
+            color=dark_pink,
+        ).scale(1.5).move_to(space_definition_part3.get_center()+0.3*DOWN)
+        space_definition_part22 = MathTex(
+            r"\text{Banach space} \quad",r"\Large \checkmark",
+            color=dark_pink,
+        ).scale(1.5).move_to(space_definition_part21.get_center()+1*DOWN)
+        space_definition_part22.set_color_by_tex(r"\Large \checkmark", GREEN)
         space_definition_part4 = MathTex(
             r"\text{The limit of every sequence} \\ \text{of continuous functions   }",
             color=dark_pink,
@@ -396,16 +402,22 @@ class TitleScene(Scene):
             color=dark_pink,
         ).scale(1.5).move_to(title_example2.get_center()+3*LEFT+1*DOWN)
 
+        space1 = VGroup(space_definition_part1,space_definition_part21,space_definition_part22).arrange(DOWN,buff=0.5).shift(2.5*LEFT)
+
         self.play(
-            TransformFromCopy(text_metric_space, space_group),
+            TransformFromCopy(text_metric_space, space1),
         )
-        self.wait(0.5)
+        self.wait(2)
+        self.play(
+            TransformMatchingTex(space1, space_group),
+        )
+        self.wait(2)
         self.play(
             TransformMatchingShapes(space_group, l1space)
         )
 
         note_l1space_part1 = MathTex(
-            r"\text{In } L^1 - \text{space two functions}",
+            r"\text{In } L^1 \text{space two functions}",
             color=BLACK,
         ).scale(1.2)
         note_l1space_part2 = MathTex(
@@ -436,11 +448,11 @@ class TitleScene(Scene):
         self.play(
             Write(final_note),
         )
-        self.wait(1)
+        self.wait(2)
         self.play(
             FadeOut(VGroup(*[text,box, final_note])),
         )
-        self.wait(0.5)
+        self.wait(1.5)
 
         norm_example1 = MathTex(r"\|f\| = \int_{-1}^{1} |f(x)| \, dx",color=dark_purple).scale(1.2).next_to(l1space,DOWN)
 
@@ -449,13 +461,14 @@ class TitleScene(Scene):
         )
         self.wait(1)
 
-        banach_space = MathTex(r"\text{Banach space}",color=dark_orange).scale(1.2).next_to(norm_example1,DOWN,buff=0.5)
+        banach_space = MathTex(r"\text{Banach space} \quad",r"\Large \checkmark",color=dark_orange).scale(1.2).next_to(norm_example1,DOWN,buff=0.5)
+        banach_space.set_color_by_tex(r"\Large \checkmark", GREEN)
         image_check = ImageMobject("images/tik .png").scale(0.1).next_to(banach_space,RIGHT).shift(0.2*UP)
         self.play(
             TransformFromCopy(text_banach_space, banach_space),
         )
         self.wait(0.5)
-        self.add(image_check)
+        # self.add(image_check)
         self.wait(1)
 
         fade_out_list = [
@@ -467,7 +480,7 @@ class TitleScene(Scene):
         ]
         self.play(
             FadeOut(VGroup(*fade_out_list)),
-            FadeOut(image_check),
+            # FadeOut(image_check),
         )
         self.play(
             FadeOut(plane),

@@ -290,16 +290,16 @@ class Part1_Scene(MovingCameraScene):
         # self.scene5(title)
 
         # Cauchy Sequences : The Mystery of Nearness
-        topic_number = 2
-        title = self.scene3(topic_number,False)
-
-        self.scene6(title)
-
-        # Banach Spaces : The Kingdom of Completeness
-        # topic_number = 3
+        # topic_number = 2
         # title = self.scene3(topic_number,False)
 
-        # self.scene7(title)
+        # self.scene6(title)
+
+        # Banach Spaces : The Kingdom of Completeness
+        topic_number = 3
+        title = self.scene3(topic_number,False)
+
+        self.scene7(title)
 
     def scene7_SubScene0(self, title):
         part1 = MathTex(
@@ -332,6 +332,8 @@ class Part1_Scene(MovingCameraScene):
         self.play(
             FadeOut(banach_group),
         )
+        self.wait(1)
+        
 
     def scene7_SubScene1(self, title):
         ...
@@ -341,15 +343,16 @@ class Part1_Scene(MovingCameraScene):
         self.play(
             Write(title),
         )
-        # self.wait(0.3)
-        # self.play(
-        #     FadeOut(title),
-        # )
-        # self.wait(1)
+        self.wait(0.3)
+        
+        self.wait(1)
 
-        # self.scene7_SubScene0(title)
+        self.scene7_SubScene0(title)
+        self.play(
+                    FadeOut(title),
+                )
 
-        self.scene7_SubScene1(title)
+        # self.scene7_SubScene1(title)
 
     def scene6_subScene0(self, title):
 
@@ -1086,7 +1089,7 @@ class Part1_Scene(MovingCameraScene):
         # self.scene6_subScene3(title, title_cauchy_text)
 
         ## ( Convergence <-> Cauchy ) & Question
-        self.scene6_subScene4(title)
+        # self.scene6_subScene4(title)
 
         # Formal Definition of Completeness
         # self.scene6_subScene5(title)
