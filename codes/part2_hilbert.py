@@ -10543,6 +10543,7 @@ class TitleScene(ThreeDScene):   # Scene
         self.play(
             Write(ip3),
         )
+        self.wait(5)
         self.play(
             Create(box1),
         )
@@ -10550,11 +10551,11 @@ class TitleScene(ThreeDScene):   # Scene
             Create(box2),
             Write(ip3_text),
         )
-        self.wait(1)
+        self.wait(5)
         self.play(
             Write(note_text),
         )
-        self.wait(1)
+        self.wait(17)
         fadeout_list = [
             ip3,
             box1,
@@ -10571,7 +10572,7 @@ class TitleScene(ThreeDScene):   # Scene
         self.play(
             TransformMatchingTex(title_inner_product, title_inner_product2),
         )
-        self.wait(0.2)
+        self.wait(0.5)
 
         ip1 = MathTex(r"IP1.\quad \langle x + y , z \rangle = \langle x , z \rangle + \langle y , z \rangle",color=BLACK).scale(1.4)
         ip2 = MathTex(r"IP2.\quad \langle \lambda x , y \rangle = \lambda \langle x , y \rangle",color=BLACK).scale(1.4)
@@ -10612,25 +10613,30 @@ class TitleScene(ThreeDScene):   # Scene
         self.play(
             Write(ip_group),
         )
+        self.wait(7)
         self.play(
             Write(line1[0]),
         )
+        self.wait(1.5)
         self.play(
             Write(line1[2]),
         )
+        # self.wait(0.5)
         self.play(
             Write(line1[1]),
         )
+        self.wait(1)
         self.play(
             Write(line3[1]),
         )
         self.play(
             Write(line3[0]),
         )
-        self.wait(0.5)
+        self.wait(4)
         self.play(
             Write(conclusion),
         )
+        self.wait(5)
 
         fadeout_list = [
             ip_group,
@@ -10710,28 +10716,33 @@ class TitleScene(ThreeDScene):   # Scene
         self.play(
             Write(line1[0]),
         )
+        self.wait(4)
         self.play(
             Write(line1[2]),
         )
+        self.wait(0.5)
         self.play(
             Write(line1[1]),
         )
+        self.wait(4)
         self.play(
             Write(line2[1]),
         )
         self.play(
             Write(line2[0]),
         )
+        self.wait(0.5)
         self.play(
             Write(line3),
         )
+        self.wait(0.5)
         self.play(
             Write(line4[1]),
         )
         self.play(
             Write(line4[0]),
         )
-        self.wait(1)
+        self.wait(3)
         self.play(
             Write(conclusion2_part1),
         )
@@ -10743,7 +10754,7 @@ class TitleScene(ThreeDScene):   # Scene
         self.play(
             TransformMatchingTex(conclusion2_part2, conclusion2),
         )
-        self.wait(0.5)
+        self.wait(3)
         fadeout_list = [
             line_group,
             conclusion2,
@@ -10799,7 +10810,7 @@ class TitleScene(ThreeDScene):   # Scene
         self.play(
            TransformMatchingTex(result_part3, result_part4),
         )
-        self.wait(0.5)
+        self.wait(2)
         
         fadeout_list = [
             title_inner_product4,
@@ -10846,7 +10857,7 @@ class TitleScene(ThreeDScene):   # Scene
             color=dark_green
         )
         exmaple2_part2 = MathTex(
-            r"\langle f, g \rangle = \int_{-1}^{1} f(x)g(x) \, dx.",
+            r"\langle f, g \rangle = \int_{-1}^{1} f(x)\overline{g(x)} \, dx.",
             color=dark_green
         )
         exmaple2_group = VGroup(exmaple2_part1, exmaple2_part2).arrange(DOWN,buff=0.5).scale(1.2).next_to(exmaple1_group,DOWN,buff=0.9)
@@ -10864,12 +10875,12 @@ class TitleScene(ThreeDScene):   # Scene
             Create(box1),
             Write(exmaple1_group),
         )
-        self.wait(1)
+        self.wait(5)
         self.play(
             Create(box2),
             Write(exmaple2_group),
         )
-        self.wait(1)
+        self.wait(5)
         self.play(
             FadeOut(VGroup(*[
                 title_example,
@@ -10941,11 +10952,11 @@ class TitleScene(ThreeDScene):   # Scene
         self.play(
             Write(text_normed_space),
         )
-        self.wait(1)
+        self.wait(0.9)
         self.play(
             Write(text_normed_space_parts[::2]),
         )
-        self.wait(1)
+        self.wait(1.5)
         self.play(
             Write(text_normed_space_parts[1]),
             Create(rect_x),
@@ -10953,7 +10964,7 @@ class TitleScene(ThreeDScene):   # Scene
             Create(rect_vec_x),
             Write(text_vector_space),
         )
-        self.wait(1)
+        self.wait(2)
         self.play(
             Write(text_normed_space_parts[3]),
             Create(rect_d),
@@ -10961,7 +10972,7 @@ class TitleScene(ThreeDScene):   # Scene
             Create(rect_distance),
             Write(text_distance),
         )
-        self.wait(1)
+        self.wait(2)
 
         fade_out_list = [text_normed_space, text_normed_space_parts, rect_x, 
                          arrow_x, rect_vec_x, text_vector_space,
@@ -10996,13 +11007,13 @@ class TitleScene(ThreeDScene):   # Scene
 
         # self.scene4_subScene4(title)
 
-        self.scene4_SubScene5(title)
+        # self.scene4_SubScene5(title)
 
         # self.scene4_SubScene6(title)
 
         # self.scene4_SubScene7(title)
 
-        # self.scene4_SubScene8(title)
+        self.scene4_SubScene8(title)
 
 
     def scene3(self,topic_number,first_time=False):
