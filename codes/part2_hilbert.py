@@ -230,10 +230,10 @@ class TitleScene(ThreeDScene):   # Scene
 
         # self.scene2()
 
-        # topic_number = 0
-        # title = self.scene3(topic_number,False)
+        topic_number = 0
+        title = self.scene3(topic_number,False)
 
-        # self.scene4(title)
+        self.scene4(title)
 
         # topic_number = 1
         # title = self.scene3(topic_number,False)
@@ -245,14 +245,14 @@ class TitleScene(ThreeDScene):   # Scene
 
         # self.scene6(title)
 
-        topic_number = 3
-        title = self.scene3(topic_number,False)
+        # topic_number = 3
+        # title = self.scene3(topic_number,False)
 
         # self.scene7(title)
 
         # self.scene7_1(title)
 
-        self.scene8(title)
+        # self.scene8(title)
 
     def scene8_SubScene0(self, title):
         self.wait(1)
@@ -10009,7 +10009,7 @@ class TitleScene(ThreeDScene):   # Scene
         self.play(
             Write(dot_formula_text),
         )
-        self.wait(0.5)
+        self.wait(1)
 
         self.play(
             Create(box),
@@ -10024,7 +10024,7 @@ class TitleScene(ThreeDScene):   # Scene
             Create(plane),
             Create(axes),
         )
-        self.wait(0.5)
+        self.wait(1)
 
         self.play(
             GrowArrow(arrow1),
@@ -10054,16 +10054,16 @@ class TitleScene(ThreeDScene):   # Scene
             Write(tetha_text),
         )
 
-        self.wait(0.5)
+        self.wait(1.5)
         self.play(
             Create(dashed),
             Create(arc_orthagenal),
         )
-        self.wait(0.5)
+        self.wait(1.5)
         self.play(
             GrowArrow(arrow3),
         )
-        self.wait(0.5)
+        self.wait(1.5)
 
         a_copy = arrow1.copy()
         angle_diff = PI/2 - a_copy.get_angle()
@@ -10082,11 +10082,11 @@ class TitleScene(ThreeDScene):   # Scene
             Write(dot_formula_part2),
         )
         times_copy = dot_formula_part2.copy().shift(2*DOWN)
-        self.wait(0.3)
+        self.wait(1.3)
         self.play(
             TransformFromCopy(dot_formula_part2, times_copy),
         )
-        self.wait(0.3)
+        self.wait(1.3)
         self.play(
             TransformFromCopy(dot_formula_text[3], dot_formula_part3),
             TransformFromCopy(arrow3, line_result),
@@ -10106,7 +10106,7 @@ class TitleScene(ThreeDScene):   # Scene
             line_result.animate.shift(1*RIGHT),
             Write(sign_text),
         )
-        self.wait(0.5)
+        self.wait(1.5)
         self.play(
             Write(theta_lower),
         )
@@ -10115,7 +10115,7 @@ class TitleScene(ThreeDScene):   # Scene
             TransformFromCopy(dot_formula_part3[1] , pos_text),
             run_time=1.5,
         )
-        self.wait(0.5)
+        self.wait(1.5)
         self.play(
             FadeTransform(theta_lower, theta_equal),
             Rotate(arrow2, angle = (PI/2 + arrow1.get_angle() - arrow2.get_angle()),
@@ -10124,7 +10124,7 @@ class TitleScene(ThreeDScene):   # Scene
             FadeOut(pos_text),
             TransformFromCopy(dot_formula_part3[1] , zero_text),
         )
-        self.wait(0.5)
+        self.wait(1.5)
         self.play(
             FadeTransform(theta_equal, theta_upper),
             Rotate(arrow2, angle = (PI/6),
@@ -10146,8 +10146,8 @@ class TitleScene(ThreeDScene):   # Scene
             dot_formula_part1,
             dot_formula_part2,
             dot_formula_part3,
-            dot_formula_text,
-            box,
+            # dot_formula_text,
+            # box,
             arrow1,
             a_text,
             arrow2,
@@ -10165,12 +10165,33 @@ class TitleScene(ThreeDScene):   # Scene
         self.play(
             FadeOut(plane),
         )
+        dot_formula_text1 = MathTex(
+            r"\cos(\theta)",
+            r" = \frac{\vec{a} \, \cdot \, \vec{b}}{\|a\| \, \|b\|}",
+            color=BLACK,
+        ).scale(1.2).move_to(title.get_center()+0.3*DOWN+0.15*LEFT)
+        box1 = SurroundingRectangle(
+            dot_formula_text1,
+            color=dark_pink,        
+            buff=0.2,    
+            # fill_color=WHITE,      
+            fill_opacity=0.2,    
+            stroke_width=3,    
+            corner_radius=0.15 
+        )
+        self.play(
+            TransformMatchingShapes(VGroup(dot_formula_text,box),VGroup(dot_formula_text1,box1)),
+        )
+        self.wait(2)
+        self.play(
+            FadeOut(VGroup(dot_formula_text1,box1,dot_formula_text,box)),
+        )
         self.wait(1)
 
     def scene4_SubScene2(self, title):
         self.wait(1)
         image = ImageMobject("images/graduate_brain_img_mini.png").scale(2.5).to_corner(DL)
-        self.add(image)
+        # self.add(image)
         a_vector = MathTex(
             r"\vec{a} = ( ",  #0
             r"a_1 ",          #1
@@ -10242,7 +10263,7 @@ class TitleScene(ThreeDScene):   # Scene
         self.play(
             Write(b_vector),
         )
-        self.wait(0.5)
+        self.wait(1)
         self.play(
             Write(dot_product_resultpart1),
         )
@@ -10250,7 +10271,7 @@ class TitleScene(ThreeDScene):   # Scene
         self.play(
             Write(dot_product_resultpart2),
         )
-        self.wait(0.5)
+        self.wait(1.5)
         self.play(
             Write(dot_product_resultpart3[0]),
         )
@@ -10273,7 +10294,7 @@ class TitleScene(ThreeDScene):   # Scene
             TransformFromCopy(b_vector[5] , dot_product_resultpart3[10]),
         )
 
-        self.wait(1)
+        self.wait(2)
 
         fadeout_list = [
             a_vector,
@@ -10284,7 +10305,7 @@ class TitleScene(ThreeDScene):   # Scene
         ]
         self.play(
             FadeOut(VGroup(*fadeout_list)),
-            FadeOut(image),
+            # FadeOut(image),
         )
         self.wait(1)
 
@@ -10455,7 +10476,7 @@ class TitleScene(ThreeDScene):   # Scene
             Create(inner_product_box),
             Write(inner_product_group),
         )
-        self.wait(1)
+        self.wait(2)
         for line in [line1, line2, line3,line4, line5]:
             rect = SurroundingRectangle(
                 line,
@@ -10468,12 +10489,12 @@ class TitleScene(ThreeDScene):   # Scene
             self.play(
                 Create(rect), 
             )
-            self.wait(1)
+            self.wait(1.5)
             self.play(
                 Uncreate(rect), 
             )
 
-        self.wait(1)
+        self.wait(2)
         self.play(
             FadeOut(VGroup(*[
                 inner_product_group,
@@ -10975,13 +10996,13 @@ class TitleScene(ThreeDScene):   # Scene
 
         # self.scene4_subScene4(title)
 
-        # self.scene4_SubScene5(title)
+        self.scene4_SubScene5(title)
 
         # self.scene4_SubScene6(title)
 
         # self.scene4_SubScene7(title)
 
-        self.scene4_SubScene8(title)
+        # self.scene4_SubScene8(title)
 
 
     def scene3(self,topic_number,first_time=False):
