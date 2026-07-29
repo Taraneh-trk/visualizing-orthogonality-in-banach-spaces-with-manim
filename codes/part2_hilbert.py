@@ -230,20 +230,20 @@ class TitleScene(ThreeDScene):   # Scene
 
         # self.scene2()
 
-        topic_number = 0
-        title = self.scene3(topic_number,False)
+        # topic_number = 0
+        # title = self.scene3(topic_number,False)
 
-        self.scene4(title)
+        # self.scene4(title)
 
         # topic_number = 1
         # title = self.scene3(topic_number,False)
 
         # self.scene5(title)
 
-        # topic_number = 2
-        # title = self.scene3(topic_number,False)
+        topic_number = 2
+        title = self.scene3(topic_number,False)
 
-        # self.scene6(title)
+        self.scene6(title)
 
         # topic_number = 3
         # title = self.scene3(topic_number,False)
@@ -8784,7 +8784,7 @@ class TitleScene(ThreeDScene):   # Scene
             color=BLACK
         )
         part2 = MathTex(
-            r"\text{ which is complete with respect to the metric}",
+            r"\text{ which is complete with respect to the norm}",
             # r"d(x,y)=\|x-y\|.",
             color=BLACK
         )
@@ -8803,11 +8803,14 @@ class TitleScene(ThreeDScene):   # Scene
             Write(group),
         )
 
-        self.wait(1)
+        self.wait(3)
 
         self.play(
             FadeOut(banach_group),
+            FadeOut(title_hilbert),
         )
+
+        self.wait(1)
 
     def scene6_SubScene1(self, title):
         book_image = ImageMobject("images/book_brain.png").scale(2).to_corner(DL).shift(0.4*LEFT+0.5*DOWN)
@@ -8879,15 +8882,15 @@ class TitleScene(ThreeDScene):   # Scene
         # ).shift(UP * 0.2)
         
         # متن‌ها
-        metric_text = Text(" Metric space ", font_size=60, color=dark_pink).move_to(UP * 3.2)
+        metric_text = Text(" Metric spaces ", font_size=55, color=dark_pink).move_to(UP * 3.2)
         
-        norm_text = Text(" Normed space ", font_size=48, color=dark_purple).move_to(UP * 1.8)
+        norm_text = Text(" Normed spaces ", font_size=43, color=dark_purple).move_to(UP * 1.8)
         
-        banach_text = Text(" Banach space ", font_size=36, color=dark_terquise).move_to(RIGHT * 3.5 + 0.8*DOWN)
+        banach_text = Text(" Banach spaces ", font_size=31, color=dark_terquise).move_to(RIGHT * 3.5 + 0.8*DOWN)
         
-        inner_text = Text(" Inner product\n      space ", font_size=36, color=dark_orange, line_spacing=0.8).move_to(LEFT * 3.5 + 0.8*DOWN)
+        inner_text = Text(" Inner product\n      spaces ", font_size=31, color=dark_orange, line_spacing=0.8).move_to(LEFT * 3.5 + 0.8*DOWN)
         
-        hilbert_text = Text(" Hilbert space ", font_size=36, color=dark_green).move_to(DOWN * 0.5)
+        hilbert_text = Text(" Hilbert spaces ", font_size=31, color=dark_green).move_to(DOWN * 0.5)
 
         intersection = Intersection(banach_circle, inner_circle, color=dark_green, fill_opacity=0.1)
 
@@ -8899,27 +8902,27 @@ class TitleScene(ThreeDScene):   # Scene
             Create(metric_circle),
             Write(metric_text),
         )
-        self.wait(0.5)
+        self.wait(1.5)
         self.play(
             Create(norm_circle),
             Write(norm_text),
         )
-        self.wait(0.5)
+        self.wait(1.5)
         self.play(
             Create(inner_circle),
             Write(inner_text),
         )
-        self.wait(0.5)
+        self.wait(1.5)
         self.play(
             Create(banach_circle),
             Write(banach_text),
         )
-        self.wait(0.5)
+        self.wait(1.5)
         self.play(
             Create(intersection),
             Write(hilbert_text),
         )
-        self.wait(1)
+        self.wait(2)
         
         self.play(
             FadeOut(VGroup(*[
@@ -8958,29 +8961,29 @@ class TitleScene(ThreeDScene):   # Scene
             Write(title_example1),
         )
 
-        space_c_1_1 = MathTex(r"\text{Space } C( [-1, 1] )",color=dark_pink).scale(1.5).move_to(title.get_center()+3*LEFT+1*DOWN)
-        definition_text = MathTex(r"g,",r"f : [-1, 1] \to \mathbb{R}",color=BLACK).scale(1.3).next_to(space_c_1_1,DOWN)
-        
-        banach_space = MathTex(r"\text{Banach space}",color=BLACK).scale(1.2).next_to(definition_text,DOWN,buff=0.5)
+        space_c_1_1 = MathTex(r"\text{Space } C( [-1, 1] )", color=dark_pink).scale(1.5).move_to(title.get_center()+3*LEFT+1*DOWN)
+        definition_text = MathTex(r"g,", r"f : [-1, 1] \to \mathbb{R}", color=BLACK).scale(1.3).next_to(space_c_1_1, DOWN)
+
+        banach_space = MathTex(r"\text{Banach space}", color=BLACK).scale(1.2).next_to(definition_text, DOWN, buff=0.5)
         image_cross = ImageMobject("images/red_cross.png").scale(1.2).move_to(banach_space.get_center())
 
         box1 = SurroundingRectangle(
             banach_space,
-            color=dark_red,        
-            buff=0.3,    
-            fill_opacity=0.1,    
-            stroke_width=3,    
-            corner_radius=0.15 
+            color=dark_red,
+            buff=0.3,
+            fill_opacity=0.1,
+            stroke_width=3,
+            corner_radius=0.15
         )
-        hilbert_space = MathTex(r"\text{Hilbert space}",color=BLACK).scale(1.2).next_to(banach_space,RIGHT,buff=3)
+        hilbert_space = MathTex(r"\text{Hilbert space}", color=BLACK).scale(1.2).next_to(banach_space, RIGHT, buff=3)
         image_cross2 = ImageMobject("images/red_cross.png").scale(1.2).move_to(hilbert_space.get_center())
         box2 = SurroundingRectangle(
             hilbert_space,
-            color=dark_red,        
-            buff=0.3,    
-            fill_opacity=0.1,    
-            stroke_width=3,    
-            corner_radius=0.15 
+            color=dark_red,
+            buff=0.3,
+            fill_opacity=0.1,
+            stroke_width=3,
+            corner_radius=0.15
         )
         arrow1 = Arrow(
             start=box1.get_right()+0.1*RIGHT,
@@ -8996,14 +8999,14 @@ class TitleScene(ThreeDScene):   # Scene
             Write(space_c_1_1),
             Write(definition_text),
         )
-        self.wait(0.5)
+        self.wait(1.5)
         self.play(
             Create(box1),
             Write(banach_space),
         )
         self.wait(0.5)
         self.add(image_cross)
-        self.wait(0.5)
+        self.wait(1.5)
         self.play(
             GrowArrow(arrow1),
             Create(box2),
@@ -9011,24 +9014,113 @@ class TitleScene(ThreeDScene):   # Scene
         )
         self.wait(0.5)
         self.add(image_cross2)
-        self.wait(0.5)
+        self.wait(1.5)
 
-        space_l_2_1 = MathTex(r"\text{Space } L^2( [-1, 1] )",color=dark_pink).scale(1.5).move_to(box1.get_center()+1.5*DOWN)
+        # ---------- مثال نقض نامساوی متوازی‌الاضلاع ----------
+
+        max_norm_def = MathTex(
+            r"\|f\|_{\infty} = \max_{x \in [-1,1]} |f(x)|",
+            color=dark_orange,
+        ).scale(1.1).next_to(box2, UP, buff=1)
+        
+        counterexample_funcs = MathTex(
+            r"f(x) = 1, \quad g(x) = x",
+            color=dark_terquise,
+        ).scale(1.2).next_to(arrow1, DOWN, buff=0.6)
+
+        parallelogram_law = MathTex(
+            r"\|f+g\|^2 + \|f-g\|^2 = 2(\|f\|^2 + \|g\|^2)",
+            color=dark_purple,
+        ).scale(0.9).next_to(counterexample_funcs, DOWN, buff=0.4)
+
+        parallelogram_values = MathTex(
+            r"4 + 4 \;\neq\; 2(1 + 1)",
+            color=dark_red
+        ).scale(1.0).next_to(parallelogram_law, DOWN, buff=0.4)
+
+        box_counter = SurroundingRectangle(
+            parallelogram_values,
+            color=dark_red,
+            buff=0.25,
+            stroke_width=3,
+            corner_radius=0.15
+        )
+        
+        self.play(Write(max_norm_def))
+        self.wait(1.5)
+        self.play(Write(counterexample_funcs))
+        self.wait(0.5)
+        self.play(Write(parallelogram_law))
+        self.wait(0.5)
+        self.play(Write(parallelogram_values))
+        self.play(Create(box_counter))
+        self.wait(2)
+        # -------------------------------------------------------
+
+        self.play(
+            FadeOut(VGroup(*[
+                # title_example1,
+                space_c_1_1,
+                definition_text,
+                banach_space,
+                hilbert_space,
+                box1,
+                box2,
+                arrow1,
+                counterexample_funcs,
+                parallelogram_law,
+                parallelogram_values,
+                box_counter,
+                max_norm_def,
+            ])),
+            FadeOut(image_cross),
+            FadeOut(image_cross2),
+        )
+        # self.play(
+        #     # FadeOut(plane),
+        # )
+        self.wait(1)
+
+
+    def scene6_SubScene4(self, title):
+        plane = NumberPlane(
+            y_range=[-6, 10, 1],
+            x_range=[-10, 10, 1],
+            background_line_style={
+                "stroke_color": GRAY,
+                "stroke_opacity": 0.5
+            },
+            y_length=10,
+            x_length=15,
+        ).move_to(DOWN)
+        # self.play(Create(plane))
+
+        title_example2 = Tex(
+            "Example",
+            color=dark_green, font_size=80
+        ).to_edge(UP)
+        # self.play(
+        #     Write(title_example2),
+        # )
+
+        space_l_2_1 = MathTex(r"\text{Space } L^2( [-1, 1] )", color=dark_pink).scale(1.5).move_to(title.get_center()+1*DOWN)
         l2_norm = MathTex(
             r"\|f\| = (\int_{-1}^{1} |f(x)|^2 \, dx)^{\frac{1}{2}}",
             color=dark_orange,
-        ).next_to(space_l_2_1, RIGHT,buff=1.5)
+        ).next_to(space_l_2_1, DOWN, buff=0.6)
 
-        hil2_space = MathTex(r"\text{Hilbert space}",color=BLACK).scale(1.2).next_to(space_l_2_1,DOWN,buff=0.5)
+        hil2_space = MathTex(r"\text{Hilbert space}" ,r"\quad \checkmark", color=BLACK).scale(1.2).next_to(l2_norm, DOWN, buff=0.7)
+        hil2_space.set_color_by_tex(r"\quad \checkmark",color=GREEN)
         box3 = SurroundingRectangle(
             hil2_space,
-            color=dark_green,        
-            buff=0.3,    
-            fill_opacity=0.1,    
-            stroke_width=3,    
-            corner_radius=0.15 
+            color=dark_green,
+            buff=0.3,
+            fill_opacity=0.1,
+            stroke_width=3,
+            corner_radius=0.15
         )
-        image_check = ImageMobject("images/tik .png").scale(0.1).next_to(hil2_space,RIGHT).shift(0.2*UP)
+        image_check = ImageMobject("images/tik .png").scale(0.1).next_to(hil2_space, RIGHT).shift(0.2*UP)
+
         self.play(
             Write(space_l_2_1),
         )
@@ -9042,30 +9134,11 @@ class TitleScene(ThreeDScene):   # Scene
             Write(hil2_space),
         )
         self.wait(0.5)
-        self.add(image_check)
-        self.wait(1)
+        # self.add(image_check)
+        self.wait(2)
 
         self.play(
-            FadeOut(VGroup(*[
-                title_example1,
-                space_c_1_1,
-                space_l_2_1,
-                definition_text,
-                banach_space,
-                hil2_space,
-                hilbert_space,
-                box1,
-                box2,
-                box3,
-                arrow1,
-                l2_norm,
-            ])),
-            FadeOut(image_check),
-            FadeOut(image_cross),
-            FadeOut(image_cross2),
-        )
-        self.play(
-            FadeOut(plane),
+            *[FadeOut(mob) for mob in self.mobjects]
         )
         self.wait(1)
 
@@ -9146,7 +9219,7 @@ class TitleScene(ThreeDScene):   # Scene
         #     FadeOut(title),
         # )
 
-        self.hilbert_animation(title)
+        # self.hilbert_animation(title)
 
         # self.scene6_SubScene0(title)
 
@@ -9154,12 +9227,13 @@ class TitleScene(ThreeDScene):   # Scene
 
         # self.scene6_SubScene2(title)
 
-        # self.scene6_SubScene3(title)
+        self.scene6_SubScene3(title)
+        self.scene6_SubScene4(title)
 
     def scene5_SubScene0(self, title):
 
         book_image = ImageMobject("images/book_brain.png").scale(1.6).to_corner(DL).shift(0.4*LEFT)
-        self.add(book_image)
+        # self.add(book_image)
 
         x_def = MathTex(
             r"y \in X",
@@ -9180,20 +9254,21 @@ class TitleScene(ThreeDScene):   # Scene
             stroke_width=3,    
             corner_radius=0.15 
         )
+        VGroup(norm_def_box, norm_def_from_inner_product).to_corner(UL)
 
-        self.play(
-            Write(x_def),
-        )
+        # self.play(
+        #     Write(x_def),
+        # )
         self.play(
             Create(norm_def_box),
             Write(norm_def_from_inner_product),
         )
         self.wait(0.5)
         self.play(
-            FadeOut(x_def),
-            VGroup(norm_def_box, norm_def_from_inner_product).animate.scale(1.2).to_corner(UL),
+            # FadeOut(x_def),
+            VGroup(norm_def_box, norm_def_from_inner_product).animate.scale(1.2),
         )
-        self.wait(0.5)
+        self.wait(2)
 
         line1_n1 = MathTex(
             r"\| y \| = 0 ",r"\;\Leftrightarrow\;",r" y = 0",
@@ -9234,7 +9309,7 @@ class TitleScene(ThreeDScene):   # Scene
             Create(n1_proof_box),
             Write(line1_n1),
         )
-        self.wait(0.5)
+        self.wait(1.5)
         self.play(
             TransformFromCopy(line1_n1[0], line2_n1[0]),
         )
@@ -9242,11 +9317,11 @@ class TitleScene(ThreeDScene):   # Scene
             Write(line2_n1[1]),
             TransformFromCopy(norm_def_from_inner_product, line2_n1[2]),
         )
-        self.wait(0.5)
+        self.wait(1.5)
         self.play(
             Write(line3_n1),
         )
-        self.wait(0.5)
+        self.wait(1.5)
         self.play(
             Write(line4_n1[1]),
         )
@@ -9256,7 +9331,7 @@ class TitleScene(ThreeDScene):   # Scene
         self.play(
             Write(line4_n1[2]),
         )
-        self.wait(1)
+        self.wait(2)
 
         self.play(
             FadeOut(VGroup(line1_n1, n1_proof, n1_proof_box)),
@@ -9310,30 +9385,30 @@ class TitleScene(ThreeDScene):   # Scene
         self.play(
             Write(line1_n2),
         )
-        self.wait(0.5)
+        self.wait(1.5)
         self.play(
             Create(n2_proof_box),
             TransformFromCopy(line1_n2[0], line2_n2[0]),
         )
-        self.wait(0.5)
+        self.wait(1.5)
         self.play(
             TransformFromCopy(norm_def_from_inner_product, line2_n2[1]),
         )
-        self.wait(0.5)
+        self.wait(1.5)
         self.play(
             Write(line3_n2[1]),
         )
         self.play(
             Write(line3_n2[0]),
         )
-        self.wait(0.5)
+        self.wait(1.5)
         self.play(
             Write(line4_n2[1]),
         )
         self.play(
             Write(line4_n2[0]),
         )
-        self.wait(0.5)
+        self.wait(1.5)
         self.play(
             Write(line5_n2[0]),
         )
@@ -9343,7 +9418,7 @@ class TitleScene(ThreeDScene):   # Scene
         self.play(
             Write(line5_n2[2]),
         )
-        self.wait(1)
+        self.wait(2)
 
         self.play(
             FadeOut(VGroup(line1_n2, n2_proof, n2_proof_box)),
@@ -9409,19 +9484,19 @@ class TitleScene(ThreeDScene):   # Scene
         self.play(
             Write(line1_n3),
         )
-        self.wait(0.5)
+        self.wait(1.5)
         self.play(
             Create(n3_proof_box),
             TransformFromCopy(line1_n3[0], line2_n3[0]),
         )
-        self.wait(0.5)
+        self.wait(1.5)
         self.play(
             Write(line3_n3[3]),
         )
         self.play(
             Write(line3_n3[:3]),
         )
-        self.wait(0.5)
+        self.wait(1.5)
         line3_n3[1].set_color(dark_red)
         self.play(
             Write(line4_n3_0),
@@ -9429,23 +9504,23 @@ class TitleScene(ThreeDScene):   # Scene
         self.play(
             Write(line4_n3),
         )
-        self.wait(0.5)
+        self.wait(1.5)
         self.play(
             Write(line5_n3[1]),
         )
         self.play(
             Write(line5_n3[0]),
         )
-        self.wait(0.5)
+        self.wait(1.5)
         self.play(
             Write(line6_n3),
         )
         
-        self.wait(1)
+        self.wait(2)
 
         self.play(
             FadeOut(VGroup(line1_n3, n3_proof, n3_proof_box,norm_def_box , norm_def_from_inner_product)),
-            FadeOut(book_image),
+            # FadeOut(book_image),
         )
 
         self.wait(1)
@@ -9505,29 +9580,29 @@ class TitleScene(ThreeDScene):   # Scene
         self.play(
             Write(inner_text),
         )
-        self.wait(0.5)
+        self.wait(1.5)
         self.play(
             Create(box1),
             Write(exmaple1_part1),
             Write(ep3),
         )
-        self.wait(0.5)
+        self.wait(2)
         self.play(
             Write(exmaple1_part2),
             Write(ep4),
         )
-        self.wait(0.5)
+        self.wait(1.5)
         self.play(
             FadeOut(exmaple1_group),
             FadeOut(box1),
         )
-        self.wait(0.5)
+        self.wait(1.5)
         self.play(
             Write(back_text),
         )
         self.wait(0.5)
         self.add(cross_image)
-        self.wait(0.5)
+        self.wait(1.5)
 
         exmaple1_part1 = MathTex(
             r"\text{The } L^1 \text{ Norm is not induced by an inner product.  } ",
@@ -9561,7 +9636,7 @@ class TitleScene(ThreeDScene):   # Scene
             Create(box1),
             Write(exmaple1_group),
         )
-        self.wait(1)
+        self.wait(2)
 
         self.play(
             FadeOut(VGroup(*[
@@ -9621,7 +9696,7 @@ class TitleScene(ThreeDScene):   # Scene
             Create(box1),
             Write(p_group),
         )
-        self.wait(1)
+        self.wait(2)
 
         line1 = MathTex(
             r"\|x + y\|^2 + \|x - y\|^2 ",
@@ -9640,7 +9715,7 @@ class TitleScene(ThreeDScene):   # Scene
         )
 
         line4 = MathTex(
-            r"= 2(\|x\|^2 + \|y\|^2) \, . ",
+            r"= 2(\|x\|^2 + \|y\|^2) \quad .\blacksquare ",
             color=BLACK
         )
 
@@ -9666,30 +9741,30 @@ class TitleScene(ThreeDScene):   # Scene
             Create(box2),
             Write(line1[0]),
         )
-        self.wait(0.5)
+        self.wait(1.5)
         self.play(
             Write(line1[1]),
         )
-        self.wait(0.5)
+        self.wait(1.5)
         self.play(
             Write(line2),
         )
         self.play(
             Write(line3),
         )
-        self.wait(0.5)
+        self.wait(1.5)
         self.play(
             Write(line4),
-            Create(square),
+            # Create(square),
         )
 
-        self.wait(1)
+        self.wait(2)
 
         self.play(
             FadeOut(VGroup(*[
                 proof_text,
                 box2,
-                square,
+                # square,
             ])),
         )
 
@@ -9811,7 +9886,7 @@ class TitleScene(ThreeDScene):   # Scene
             Write(diff_text),
         )
 
-        self.wait(1)
+        self.wait(2)
 
         self.play(
             FadeOut(VGroup(*[
@@ -9834,15 +9909,15 @@ class TitleScene(ThreeDScene):   # Scene
         self.wait(1)
 
     def scene5_SubScene4(self, title):
-        circle_metric = Circle(4,dark_pink,fill_color=dark_pink,fill_opacity=0.1)
-        text_metric_space = MathTex(r"\text{Metric space}",color=dark_pink).scale(2).move_to(circle_metric.get_center()+2.3*UP)
+        circle_metric = Circle(4,dark_pink,fill_color=dark_pink,fill_opacity=0)
+        text_metric_space = MathTex(r"\text{Metric spaces}",color=dark_pink).scale(2).move_to(circle_metric.get_center()+2.2*UP)
 
-        circle_norm = Circle(2.8,dark_purple,fill_color=dark_purple,fill_opacity=0.1).shift(1*DOWN)
-        text_norm_space = MathTex(r"\text{Normed space}",color=dark_purple).scale(1.5).move_to(circle_norm.get_center()+1.3*UP)
+        circle_norm = Circle(2.8,dark_purple,fill_color=dark_purple,fill_opacity=0).shift(1*DOWN)
+        text_norm_space = MathTex(r"\text{Normed spaces}",color=dark_purple).scale(1.5).move_to(circle_norm.get_center()+1.2*UP)
 
-        circle_banach = Circle(1.8,dark_orange,fill_color=dark_orange,fill_opacity=0.1).shift(1.8*DOWN)
+        circle_banach = Circle(1.8,dark_orange,fill_color=dark_orange,fill_opacity=0).shift(1.8*DOWN)
         text_banach_space_part1 = MathTex(r"\text{Inner product} ",color=dark_orange)
-        text_banach_space_part2 = MathTex(r"\text{space} ",color=dark_orange)
+        text_banach_space_part2 = MathTex(r"\text{spaces} ",color=dark_orange)
         text_banach_space = VGroup(text_banach_space_part1, text_banach_space_part2).arrange(DOWN,buff=0.2).move_to(circle_banach.get_center()+0.2*UP)
 
         
@@ -9850,17 +9925,17 @@ class TitleScene(ThreeDScene):   # Scene
             Write(text_norm_space),
             Create(circle_norm),
         )
-        self.wait(0.5)
+        self.wait(1.5)
         self.play(
             Write(text_banach_space),
             TransformFromCopy(circle_norm, circle_banach),
         )
-        self.wait(0.5)
+        self.wait(1.5)
         self.play(
             Write(text_metric_space),
             TransformFromCopy(circle_norm, circle_metric),
         )
-        self.wait(1)
+        self.wait(2)
 
         fade_out_list = [
             circle_metric,
