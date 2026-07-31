@@ -240,15 +240,15 @@ class TitleScene(ThreeDScene):   # Scene
 
         # self.scene5(title)
 
-        topic_number = 2
-        title = self.scene3(topic_number,False)
-
-        self.scene6(title)
-
-        # topic_number = 3
+        # topic_number = 2
         # title = self.scene3(topic_number,False)
 
-        # self.scene7(title)
+        # self.scene6(title)
+
+        topic_number = 3
+        title = self.scene3(topic_number,False)
+
+        self.scene7(title)
 
         # self.scene7_1(title)
 
@@ -7512,7 +7512,7 @@ class TitleScene(ThreeDScene):   # Scene
     def scene7_SubScene0(self, title):
         self.wait(1)
         image = ImageMobject("images/graduate_brain_img_mini.png").scale(3).to_corner(DL)
-        self.add(image)
+        # self.add(image)
         or_in_hil_titlepart1 = Tex("Orthogonality in", color=BLACK, font_size=80)
         or_in_hil_titlepart2 = Tex("an inner product space", color=BLACK, font_size=80)
         or_in_hil_title = VGroup(or_in_hil_titlepart1, or_in_hil_titlepart2).arrange(DOWN, buff=0.3)
@@ -7562,7 +7562,7 @@ class TitleScene(ThreeDScene):   # Scene
             Create(box),
             Write(group),
         )
-        self.wait(1)
+        self.wait(3)
 
         self.play(
             # FadeOut(title),
@@ -7706,15 +7706,15 @@ class TitleScene(ThreeDScene):   # Scene
             # fill_opacity = 0.01,
         ).shift(LEFT * 1.8+0.8*DOWN)
         
-        metric_text = Text(" Metric space ", font_size=60, color=dark_pink).move_to(UP * 3.2)
+        metric_text = Text(" Metric spaces ", font_size=55, color=dark_pink).move_to(UP * 3.2)
         
-        norm_text = Text(" Normed space ", font_size=48, color=dark_purple).move_to(UP * 1.8)
+        norm_text = Text(" Normed spaces ", font_size=43, color=dark_purple).move_to(UP * 1.8)
         
-        banach_text = Text(" Banach space ", font_size=36, color=dark_terquise).move_to(RIGHT * 3.5 + 0.8*DOWN)
+        banach_text = Text(" Banach spaces ", font_size=31, color=dark_terquise).move_to(RIGHT * 3.5 + 0.8*DOWN)
         
-        inner_text = Text(" Inner product\n       space ", font_size=36, color=dark_orange, line_spacing=0.8).move_to(LEFT * 3.5 + 0.8*DOWN)
+        inner_text = Text(" Inner product\n       spaces ", font_size=31, color=dark_orange, line_spacing=0.8).move_to(LEFT * 3.5 + 0.8*DOWN)
         
-        hilbert_text = Text(" Hilbert space ", font_size=36, color=dark_green).move_to(DOWN * 0.5)
+        hilbert_text = Text(" Hilbert spaces ", font_size=31, color=dark_green).move_to(DOWN * 0.5)
 
         intersection = Intersection(banach_circle, inner_circle, color=dark_green, fill_opacity=0.1)
 
@@ -7739,7 +7739,7 @@ class TitleScene(ThreeDScene):   # Scene
         self.play(
             FadeIn(all_shapes),
         )
-        self.wait(1)
+        self.wait(2)
 
         talk_circle = Ellipse(
             width=7, height=4,
@@ -7749,12 +7749,12 @@ class TitleScene(ThreeDScene):   # Scene
         ).shift(LEFT * 1.8+0.8*DOWN)
 
         self.wait(0.5)
-        inner_text[0:12].set_color(dark_red)
+        # inner_text[0:12].set_color(dark_red)
         self.wait(1)
         self.play(
             Create(talk_circle),
         )
-        self.wait(1)
+        self.wait(2)
 
         talk_circle2 = Ellipse(
             width=12, height=6,
@@ -7764,14 +7764,14 @@ class TitleScene(ThreeDScene):   # Scene
         ).shift(DOWN * 0.3)
 
         self.wait(0.5)
-        inner_text[0:12].set_color(dark_orange)
+        # inner_text[0:12].set_color(dark_orange)
         self.wait(0.5)
-        norm_text[0:4].set_color(dark_red)
+        # norm_text[0:4].set_color(dark_red)
         self.wait(1)
         self.play(
             Transform(talk_circle, talk_circle2),
         )
-        self.wait(1)
+        self.wait(2)
 
         self.play(
             FadeOut(VGroup(*[
@@ -7781,7 +7781,8 @@ class TitleScene(ThreeDScene):   # Scene
         )
 
         self.wait(1)
-
+# self.show_uniqueness()   #این رو به قبلی اضافه کردم
+# self.show_unique_diagonals()
     def scene7_SubScene2_1(self, title):
         self.show_nondegeneracy()
         self.show_simplification()
@@ -7790,8 +7791,6 @@ class TitleScene(ThreeDScene):   # Scene
         self.show_symmetry()
         self.show_additivity()
         self.show_existence()
-        # self.show_uniqueness()   #این رو به قبلی اضافه کردم
-        # self.show_unique_diagonals()
         self.show_scalar_existence()
 
     def create_title_and_box_custom(self, title_text, math_formula):
@@ -7815,7 +7814,7 @@ class TitleScene(ThreeDScene):   # Scene
     def show_nondegeneracy(self):
         title, group, box = self.create_title_and_box_custom(
             "Nondegeneracy", 
-            r"\forall \lambda , \mu \in \mathbb{K} \quad \lambda x \perp \mu x \iff \lambda x = 0 \lor \mu x = 0"
+            r"\text{for all } \lambda , \mu \in \mathbb{K} \quad \lambda x \perp \mu x \iff \lambda x = 0 \text{ or } \mu x = 0"
         )
         
         axes = Axes(
@@ -7847,7 +7846,7 @@ class TitleScene(ThreeDScene):   # Scene
         text_x = always_redraw(
             lambda : MathTex(r"\vec{x}",color=dark_purple).move_to(vec_x.get_center()+0.4*DOWN)
         )
-
+ 
         val1 = ValueTracker(4.5)
         vec_x1 = always_redraw(lambda: Arrow(
             start=axes.c2p(0, 0),
@@ -7858,7 +7857,7 @@ class TitleScene(ThreeDScene):   # Scene
         text_x1 = always_redraw(
             lambda : MathTex(r"\lambda \vec{x}",color=dark_pink).move_to(vec_x1.get_center()+0.4*UP)
         )
-
+ 
         val2 = ValueTracker(-3.5)
         vec_x2 = always_redraw(lambda: Arrow(
             start=axes.c2p(0, 0),
@@ -7900,11 +7899,11 @@ class TitleScene(ThreeDScene):   # Scene
         
         self.clear()
         self.wait(1)
-
+ 
     def show_simplification(self):
         title, group, box = self.create_title_and_box_custom(
             "Simplification", 
-            r"x \perp y \implies \lambda x \perp \lambda y \quad \forall \lambda \in \mathbb{K}"
+            r"x \perp y \implies \lambda x \perp \lambda y \quad \text{for all } \lambda \in \mathbb{K}"
         )
         
         axes = Axes(
@@ -7969,12 +7968,18 @@ class TitleScene(ThreeDScene):   # Scene
         self.play(Create(plane), Create(axes))
         self.play(GrowArrow(vec_x), Write(text_x1), GrowArrow(vec_y), Write(text_y1))
         self.play(Create(angle))
-
+ 
+        # ابتدا فقط برچسب‌ها از x , y به لاندا x , لاندا y تبدیل می‌شوند
+        # در حالی که lam هنوز ۱ است، پس فلش‌ها ثابت‌اند و ترنسفورم تمیز انجام می‌شود.
+        # قبلاً چون تغییر مقدار lam هم‌زمان با TransformMatchingTex اجرا می‌شد،
+        # چون فلش‌ها و برچسب‌ها always_redraw بودند، تارگتِ ترنسفورم هر فریم عوض می‌شد
+        # و باعث می‌شد لاندا x و لاندا y یکجا و ناگهانی جابه‌جا شوند.
         self.play(
             TransformMatchingTex(text_x1, text_x2),
             TransformMatchingTex(text_y1, text_y2),
-            lam.animate.set_value(1.8), run_time=1
+            run_time=1
         )
+        self.play(lam.animate.set_value(1.8), run_time=1)
         self.play(lam.animate.set_value(0.5), run_time=1)
         self.play(lam.animate.set_value(-1.5), run_time=1.5)
         self.wait(1)
@@ -7982,7 +7987,7 @@ class TitleScene(ThreeDScene):   # Scene
         # self.play(FadeOut(VGroup(*self.mobjects)))
         self.clear()
         self.wait(1)
-
+ 
     def get_right_angle_mark(self, vec1, vec2, size=0.3, color=BLACK):
         start = vec1.get_start()
         
@@ -7997,7 +8002,7 @@ class TitleScene(ThreeDScene):   # Scene
                     stroke_color=color,
                     stroke_width=2,
                     fill_opacity=0)
-
+ 
     def show_continuity(self):
         title, group, box = self.create_title_and_box_custom(
             "Continuity", 
@@ -8021,13 +8026,13 @@ class TitleScene(ThreeDScene):   # Scene
             y_length=6,
             x_length=9,
         ).next_to(box, DOWN, buff=0.5)
-
+ 
         self.play(Create(plane), Create(axes))
-
+ 
         # تعداد مراحل چرخش (مرحله آخر = x_n, y_n)
         n_steps = 4
         angles = np.linspace(0, PI/4, n_steps)
-
+ 
         def make_vec_x(angle):
             return Arrow(
                 start=axes.c2p(0, 0),
@@ -8035,7 +8040,7 @@ class TitleScene(ThreeDScene):   # Scene
                 buff=0, stroke_width=5, color=dark_terquise,
                 tip_length=0.25, tip_shape=StealthTip
             )
-
+ 
         def make_vec_y(angle):
             return Arrow(
                 start=axes.c2p(0, 0),
@@ -8043,33 +8048,33 @@ class TitleScene(ThreeDScene):   # Scene
                 buff=0, stroke_width=5, color=dark_pink,
                 tip_length=0.25, tip_shape=StealthTip
             )
-
+ 
         last_text_x = None
         last_text_y = None
         last_angle_mark = None
-
+ 
         for i, ang in enumerate(angles):
             is_last = (i == n_steps - 1)
-
+ 
             vec_x = make_vec_x(ang)
             vec_y = make_vec_y(ang)
-
+ 
             if is_last:
                 ang*=1.5
                 vec_x = make_vec_x(ang)
                 vec_y = make_vec_y(ang)
-
+ 
                 label_x = r"\vec{x_n}"
                 label_y = r"\vec{y_n}"
             else:
                 label_x = rf"\vec{{x_{i+1}}}"
                 label_y = rf"\vec{{y_{i+1}}}"
-
+ 
             text_x = MathTex(label_x, color=dark_terquise).move_to(axes.c2p(4 * np.cos(ang), 4 * np.sin(ang)) +0.5*RIGHT)
             text_y = MathTex(label_y, color=dark_pink).move_to(axes.c2p(-4 * np.sin(ang + 0.01), 4 * np.cos(ang + 0.01)) +0.5*UP)
-
+ 
             angle_mark = self.get_right_angle_mark(vec_x, vec_y, size=0.3, color=BLACK)
-
+ 
             if i == 0:
                 # مرحله اول: نمایش کامل بردارها با رشد از مبدا
                 self.play(
@@ -8086,32 +8091,32 @@ class TitleScene(ThreeDScene):   # Scene
                     FadeIn(angle_mark),
                     run_time=0.8
                 )
-
+ 
             prev_vec_x, prev_vec_y = vec_x, vec_y
             last_text_x, last_text_y = text_x, text_y
             last_angle_mark = angle_mark
             self.wait(0.3)
-
+ 
         self.wait(1)
-
+ 
         # حالا x_n, y_n به x, y تبدیل می‌شوند (بدون پاک شدن بقیه چیزها)
         final_text_x = MathTex(r"\vec{x}", color=dark_terquise).move_to(last_text_x.get_center())
         final_text_y = MathTex(r"\vec{y}", color=dark_pink).move_to(last_text_y.get_center())
-
+ 
         self.play(
             Transform(last_text_x, final_text_x),
             Transform(last_text_y, final_text_y),
             run_time=1.5
         )
-
+ 
         self.wait(1)
         self.clear()
         self.wait(1)
-
+ 
     def show_homogeneity(self):
         title, group, box = self.create_title_and_box_custom(
             "Homogeneity", 
-            r"x \perp y \implies \lambda x \perp \mu y \quad \forall \lambda, \text{ } \mu \in \mathbb{R}"
+            r"x \perp y \implies \lambda x \perp \mu y \quad \text{for all } \lambda, \mu \in \mathbb{R}"
         )
         
         axes = Axes(
@@ -8131,7 +8136,7 @@ class TitleScene(ThreeDScene):   # Scene
             y_length=6,
             x_length=9,
         ).next_to(box,DOWN, buff=0.5)
-
+ 
         lam = ValueTracker(1)
         mu = ValueTracker(1)
         
@@ -8189,7 +8194,7 @@ class TitleScene(ThreeDScene):   # Scene
         # self.play(FadeOut(VGroup(*self.mobjects)))
         self.clear()
         self.wait(1)
-
+ 
     def show_symmetry(self):
         title, group, box = self.create_title_and_box_custom(
             "Symmetry", 
@@ -8247,11 +8252,11 @@ class TitleScene(ThreeDScene):   # Scene
         # self.play(FadeOut(VGroup(*self.mobjects)))
         self.clear()
         self.wait(1)
-
+ 
     def show_additivity(self):
         title, group, box = self.create_title_and_box_custom(
             "Additivity", 
-            r"x \perp y \land x \perp z \implies x \perp (y+z)"
+            r"x \perp y \text{ and } x \perp z \implies x \perp (y+z)"
         )
         
         axes = Axes(
@@ -8281,7 +8286,7 @@ class TitleScene(ThreeDScene):   # Scene
             r"\vec{x}",
             color=dark_pink,
         ).move_to(vec_x.get_center()+0.4*LEFT)
-
+ 
         vec_y = Arrow(
             start=axes.c2p(0,0), end=axes.c2p(3, 0),
             buff=0, stroke_width=6, color=dark_green,
@@ -8291,7 +8296,7 @@ class TitleScene(ThreeDScene):   # Scene
             r"\vec{y}",
             color=dark_green,
         ).move_to(vec_y.get_center()+0.4*DOWN)
-
+ 
         vec_z = Arrow(
             start=axes.c2p(0,0), end=axes.c2p(-6, 0),
             buff=0, stroke_width=6, color=dark_orange,
@@ -8301,7 +8306,7 @@ class TitleScene(ThreeDScene):   # Scene
             r"\vec{z}",
             color=dark_orange,
         ).move_to(vec_z.get_center()+0.4*UP)
-
+ 
         vec_sum = Arrow(
             start=axes.c2p(0,0), end=axes.c2p(-3, 0),
             buff=0, stroke_width=6, color=dark_purple,
@@ -8322,11 +8327,11 @@ class TitleScene(ThreeDScene):   # Scene
         # self.play(FadeOut(VGroup(*self.mobjects)))
         self.clear()
         self.wait(1)
-
+ 
     def show_existence(self):
         title, group, box = self.create_title_and_box_custom(
             "Existence", 
-            r"\exists y \in P : \|y\| = \rho \land x \perp y"
+            r"\text{there exist } y \in P : \|y\| = \rho \text{ and } x \perp y"
         )
         
         axes = Axes(
@@ -8356,7 +8361,7 @@ class TitleScene(ThreeDScene):   # Scene
             r"\vec{x}",
             color=dark_purple,
         ).move_to(vec_x.get_center()+0.4*LEFT+0.2*UP)
-
+ 
         circle = Circle(radius=2 * (6/8), color=BLACK).shift(axes.c2p(0,0))
         
         line = Line(axes.c2p(-2.5, 4.16), axes.c2p(2.5, -4.16), color=GRAY).set_opacity(0.5)
@@ -8370,7 +8375,7 @@ class TitleScene(ThreeDScene):   # Scene
             r"\vec{y_1}",
             color=dark_terquise,
         ).move_to(vec_y1.get_center()+0.4*LEFT+0.1*DOWN)
-
+ 
         vec_y2 = Arrow(
             start=axes.c2p(0,0), end=axes.c2p(1.03, -1.71),
             buff=0, stroke_width=6, color=dark_pink,
@@ -8390,16 +8395,16 @@ class TitleScene(ThreeDScene):   # Scene
         self.play(FadeOut(VGroup(*[
             title, group, box
         ])))
-
+ 
         title, group, box = self.create_title_and_box_custom(
             "Uniqueness", 
             r"\text{The vector } y \text{ is unique given an orientation.}"
         )
         self.wait(1)
-
+ 
         self.clear()
         self.wait(1)
-
+ 
     def show_uniqueness(self):
         title, group, box = self.create_title_and_box_custom(
             "Uniqueness", 
@@ -8452,11 +8457,11 @@ class TitleScene(ThreeDScene):   # Scene
         # self.play(FadeOut(VGroup(*self.mobjects)))
         self.clear()
         self.wait(1)
-
+ 
     def show_unique_diagonals(self):
         title, group, box = self.create_title_and_box_custom(
             "Unique Diagonals", 
-            r"\exists ! \rho > 0 : (x + \rho y) \perp (x - \rho y)"
+            r"\text{there exist a unique } \rho > 0 : (x + \rho y) \perp (x - \rho y)"
         )
         
         rho = ValueTracker(0.4)
@@ -8487,11 +8492,11 @@ class TitleScene(ThreeDScene):   # Scene
                 axes.c2p(*(v_x + v_y)),
                 axes.c2p(*v_y),
             )
-
+ 
         def get_poly():
             p0, p1, p2, p3 = get_verts()
             return Polygon(p0, p1, p2, p3, color=dark_orange, fill_opacity=0.1)
-
+ 
         def get_poly_labels():
             p0, p1, p2, p3 = get_verts()
             mid_bottom = (np.array(p0) + np.array(p1)) / 2
@@ -8499,26 +8504,26 @@ class TitleScene(ThreeDScene):   # Scene
             label_x = MathTex(r"\vec{x}",        color=dark_orange, font_size=36).move_to(mid_bottom + np.array([0,    -0.35, 0]))
             label_y = MathTex(r"\rho \vec{y}",   color=dark_orange, font_size=36).move_to(mid_left   + np.array([-0.5,  0,   0]))
             return VGroup(label_x, label_y)
-
+ 
         def get_diag1():
             p0, p1, p2, p3 = get_verts()
             d1 = DashedLine(p0, p2, color=dark_red)
             mid = (np.array(p0) + np.array(p2)) / 2
             label = MathTex(r"x + \rho y", color=dark_red, font_size=34).move_to(mid + np.array([-0.8, 0.35, 0])).shift(0.3*DOWN+0.2*LEFT)
             return VGroup(d1, label)
-
+ 
         def get_diag2():
             p0, p1, p2, p3 = get_verts()
             d2 = DashedLine(p1, p3, color=dark_pink)
             mid = (np.array(p1) + np.array(p3)) / 2
             label = MathTex(r"x - \rho y", color=dark_pink, font_size=34).move_to(mid + np.array([0.8, 0.35, 0])).shift(0.3*DOWN+0.3*RIGHT)
             return VGroup(d2, label)
-
+ 
         poly        = always_redraw(get_poly)
         poly_labels = always_redraw(get_poly_labels)
         diag1       = always_redraw(get_diag1)
         diag2       = always_redraw(get_diag2)
-
+ 
         self.play(Create(plane), Create(axes))
         self.play(Create(poly))
         self.play(FadeIn(poly_labels))
@@ -8529,11 +8534,11 @@ class TitleScene(ThreeDScene):   # Scene
         
         self.clear()
         self.wait(1)
-
+ 
     def show_scalar_existence(self):
         title, group, box = self.create_title_and_box_custom(
             "Scalar Existence", 
-            r"\exists a \in \mathbb{K} : x \perp (ax + y)"
+            r"\text{there exist } a \in \mathbb{K} : x \perp (ax + y)"
         )
         
         axes = Axes(
@@ -8561,7 +8566,7 @@ class TitleScene(ThreeDScene):   # Scene
         )
         label_x = MathTex(r"x", color=dark_blue, font_size=36)\
             .next_to(vec_x, DOWN, buff=0.2)
-
+ 
         vec_y = Arrow(
             start=axes.c2p(0,0), end=axes.c2p(2, 2.5),
             buff=0, stroke_width=6, color=dark_green,
@@ -8589,7 +8594,7 @@ class TitleScene(ThreeDScene):   # Scene
             .next_to(vec_sum.get_end(), UL, buff=0.15)
         
         right_angle = RightAngle(vec_x, vec_sum, length=0.3, color=BLACK)
-
+ 
         self.play(Create(plane), Create(axes))
         self.play(GrowArrow(vec_x), FadeIn(label_x),
                   GrowArrow(vec_y), FadeIn(label_y))
