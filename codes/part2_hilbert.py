@@ -1248,7 +1248,7 @@ class TitleScene(ThreeDScene):   # Scene
         the sense of Birkhoff if and only if ‖x‖ ≤ ‖x + λy‖ , ∀λ ∈ R
         """
         robert_def_part1 = MathTex(
-            r"\text{Two elements } x \text{ and } y \text{ in a Banach space } X \text{ are said to}",
+            r"\text{Two elements } x \text{ and } y \text{ in a Normed space } X \text{ are said to}",
             color=BLACK,
         )
         robert_def_part2 = MathTex(
@@ -1271,20 +1271,20 @@ class TitleScene(ThreeDScene):   # Scene
             Write(title_orth),
         )
         self.wait(0.5)
-        self.play(
-            Write(year_text),
-        )
-        self.add(b_image)
-        self.wait(0.5)
-        self.play(
-            FadeOut(year_text),
-            FadeOut(b_image),
-        )
+        # self.play(
+        #     Write(year_text),
+        # )
+        # self.add(b_image)
+        # self.wait(0.5)
+        # self.play(
+        #     FadeOut(year_text),
+        #     FadeOut(b_image),
+        # )
         self.play(
             Create(box),
             Write(group),
         )
-        self.wait(1)
+        self.wait(10)
         self.play(
             FadeOut(title_orth),
             FadeOut(group),
@@ -1295,7 +1295,7 @@ class TitleScene(ThreeDScene):   # Scene
     def scene8_SubScene5(self, title):
         self.wait(0.5)
         image = ImageMobject("images/book_brain.png").scale(2).to_corner(DL)
-        self.add(image)
+        # self.add(image)
 
         title_orth = Tex("Birkhoff-James Orthogonality", color=dark_blue, font_size=60).to_corner(UL).shift(0.15*UP)
 
@@ -1443,6 +1443,7 @@ class TitleScene(ThreeDScene):   # Scene
             Create(box1),
             Write(roberts),
         )
+        self.wait(0.5)
         self.play(
             Create(plane),
             Create(axes),
@@ -1454,7 +1455,8 @@ class TitleScene(ThreeDScene):   # Scene
             GrowArrow(arrow_x),
             Write(x_text),
         )
-        self.wait(0.3)
+        self.wait(0.5)
+        # self.wait(0.3)
         self.play(
             TransformFromCopy(roberts[0], radius_text),
         )
@@ -1480,7 +1482,7 @@ class TitleScene(ThreeDScene):   # Scene
             FadeIn(moving_arrow),
             Write(moving_label),
         )
-        self.wait(0.5)
+        self.wait(1)
 
         self.play(
             dot_x.animate.move_to(axes.c2p(3, 6)),
@@ -1514,7 +1516,7 @@ class TitleScene(ThreeDScene):   # Scene
             FadeOut(all_shapes),
             FadeOut(roberts),
             FadeOut(box1),
-            FadeOut(image),
+            # FadeOut(image),
         )
         self.wait(1)
 
@@ -2155,175 +2157,234 @@ class TitleScene(ThreeDScene):   # Scene
 
     def scene8_SubScene6(self, title):
         title_orth = Tex("Birkhoff-James Orthogonality", color=BLACK, font_size=70).to_edge(UP)
-
+    
         roberts = MathTex(
-            r"\|x\| ",r"\le ",r"\|x + \lambda y\|",r"\quad \text{ for all } \lambda \in \mathbb{K}",
-            color = BLACK,
-        ).next_to(title_orth,DOWN,buff=0.5)
+            r"\|x\| ", r"\le ", r"\|x + \lambda y\|", r"\quad \text{ for all } \lambda \in \mathbb{K}",
+            color=BLACK,
+        ).next_to(title_orth, DOWN, buff=0.5)
         box1 = SurroundingRectangle(
             roberts,
-            color=dark_blue,        
-            buff=0.2,    
-            fill_opacity=0.1,    
-            stroke_width=3,    
-            corner_radius=0.15 
+            color=dark_blue,
+            buff=0.2,
+            fill_opacity=0.1,
+            stroke_width=3,
+            corner_radius=0.15
         )
-        
+    
         self.play(
             FadeIn(title_orth),
         )
-        self.play(
-            Create(box1),
-            Write(roberts),
-        )
+        # self.play(
+        #     Create(box1),
+        #     Write(roberts),
+        # )
+        # self.wait(0.5)
+        # self.play(
+        #     FadeOut(box1),
+        #     FadeOut(roberts),
+        # )
         self.wait(0.5)
-
+    
         # proof and counterexample
-        nonsymmetry_title = MathTex(r"\text{Non-Symmetry Counterexample}",color=dark_pink)
-
+    
+        # helper: scale a finished group up (or down) to the largest size that
+        # still fits inside the given width/height budget, so every property
+        # ends up bigger on screen without ever spilling past the frame edges.
+        def fit_to_frame(mobject, max_width, max_height):
+            scale_factor = min(max_width / mobject.width, max_height / mobject.height)
+            mobject.scale(scale_factor)
+            return mobject
+    
+        # helper: box format identical to box1, just re-usable per property color
+        def property_box(mobject, color):
+            return SurroundingRectangle(
+                mobject,
+                color=color,
+                buff=0.2,
+                fill_opacity=0.1,
+                stroke_width=3,
+                corner_radius=0.15,
+            )
+    
+        nonsymmetry_title = MathTex(r"\text{Non-Symmetry Counterexample}", color=dark_pink)
+    
         # Space definition
         nonsymmetry_space = MathTex(
             r"\text{Space: } \mathbb{R}^2 \text{ with } \ell^1 \text{ norm: } \|(u,v)\|_1 = |u| + |v|",
             color=BLACK,
         )
-
+    
         # Vectors
         nonsymmetry_vectors = MathTex(
             r"x = (1,0), \quad y = (1,1)",
             color=BLACK,
         )
-
+    
         # Part 1 title
         part1_title = MathTex(
             r"\text{Step 1: Show } x \perp_{BJ} y",
             color=BLACK,
         )
-
+    
         # Part 1 - norm of x
         part1_norm_x = MathTex(
             r"\|x\|_1 = \|(1,0)\|_1 = |1| + |0| = 1",
             color=BLACK,
         )
-
+    
         # Part 1 - norm of x + λy
         part1_norm_sum = MathTex(
             r"\|x + \lambda y\|_1 = \|(1+\lambda, \lambda)\|_1 = |1+\lambda| + |\lambda|",
             color=BLACK,
         )
-
+    
         # Part 1 - inequality
         part1_inequality = MathTex(
             r"1 \leq |1+\lambda| + |\lambda| \quad \forall \lambda \in \mathbb{R}",
             color=BLACK,
         )
-
+    
         # Part 1 - conclusion
         # part1_conclusion = MathTex(r"\therefore x \perp_{BJ} y")
-
+    
         # Part 2 title
         part2_title = MathTex(
             r"\text{Step 2: Show } y \not\perp_{BJ} x",
             color=BLACK,
         )
-
+    
         # Part 2 - norm of y
         part2_norm_y = MathTex(
             r"\|y\|_1 = \|(1,1)\|_1 = |1| + |1| = 2",
             color=BLACK,
         )
-
+    
         # Part 2 - norm of y + λx
         part2_norm_sum = MathTex(
             r"\|y + \lambda x\|_1 = \|(1+\lambda, 1)\|_1 = |1+\lambda| + 1",
             color=BLACK,
         )
-
+    
         # Part 2 - required condition
         part2_condition = MathTex(
             r"2 \leq |1+\lambda| + 1 \iff 1 \leq |1+\lambda|",
             color=BLACK,
         )
-
+    
         # Part 2 - counterexample
         part2_counter = MathTex(
-            r"\text{For } \lambda = -1: \quad |1+(-1)| = 0",
+            r"\text{For } \lambda = -1: \quad 1 \le 0",
             color=dark_pink,
         )
-
+    
         # Part 2 - inequality fails
         # part2_fails = MathTex(r"1 \leq 0 \quad \text{(False)}")
-
+    
         # Part 2 - conclusion
         # part2_conclusion = MathTex(r"\therefore y \not\perp_{BJ} x")
-
+    
+        # the two "Step" derivations sit side by side -> each gets its own box
+        part1_group = VGroup(*[
+            part1_title,
+            part1_norm_x,
+            part1_norm_sum,
+            part1_inequality,
+        ]).arrange(DOWN, buff=0.3).scale(0.75)
+    
+        part2_group = VGroup(*[
+            part2_title,
+            part2_norm_y,
+            part2_norm_sum,
+            part2_condition,
+            part2_counter,
+        ]).arrange(DOWN, buff=0.3).scale(0.75)
+    
+        parts_row = VGroup(part1_group, part2_group).arrange(RIGHT, buff=1.0)
+    
         sym = VGroup(*[
             nonsymmetry_title,
             nonsymmetry_space,
             nonsymmetry_vectors,
-            VGroup(*[
-                VGroup(*[
-                    part1_title,
-                    part1_norm_x,
-                    part1_norm_sum,
-                    part1_inequality,
-                ]).arrange(DOWN,buff=0.2).scale(0.7).shift(2*LEFT),
-                VGroup(*[
-                    part2_title,
-                    part2_norm_y,
-                    part2_norm_sum,
-                    part2_condition,
-                ]).arrange(DOWN,buff=0.2).scale(0.7).shift(2*LEFT),
-            ]).arrange(RIGHT,buff=0.5),
-            part2_counter,
-        ]).arrange(DOWN,buff=0.3).next_to(box1,DOWN,buff=0.3)
-
-        self.play(
-            Write(sym),
-        )
+            parts_row,
+            # part2_counter,
+        ]).arrange(DOWN, buff=0.35)
+        fit_to_frame(sym, max_width=12.5, max_height=6.5)
+        sym.next_to(title_orth, DOWN, buff=0.5)
+    
+        box_part1 = property_box(part1_group, dark_pink)
+        box_part2 = property_box(part2_group, dark_pink)
+    
+        self.play(Write(nonsymmetry_title))
+        self.wait(0.3)
+        self.play(Write(nonsymmetry_space))
+        self.wait(0.3)
+        self.play(Write(nonsymmetry_vectors))
+        self.wait(0.3)
+    
+        self.play(Create(box_part1))
+        self.play(Write(part1_title))
+        self.play(Write(part1_norm_x))
+        self.wait(0.2)
+        self.play(Write(part1_norm_sum))
+        self.wait(0.2)
+        self.play(Write(part1_inequality))
+        self.wait(0.5)
+    
+        self.play(Create(box_part2))
+        self.play(Write(part2_title))
+        self.play(Write(part2_norm_y))
+        self.wait(0.2)
+        self.play(Write(part2_norm_sum))
+        self.wait(0.2)
+        self.play(Write(part2_condition))
+        self.wait(0.5)
+    
+        self.play(Write(part2_counter))
         self.wait(1)
+    
         self.play(
-            FadeOut(sym),
+            FadeOut(VGroup(sym, box_part1, box_part2)),
         )
-
-        homogeneity_title = MathTex(r"\text{Homogeneity}",color=dark_purple)
-
+    
+        homogeneity_title = MathTex(r"\text{Homogeneity}", color=dark_purple)
+    
         # Statement
         homogeneity_statement = MathTex(
-            r"\text{If } x \perp_{BJ} y, \text{ then } (\alpha x) \perp_{BJ} (\beta y) \quad \forall \alpha, \beta \in \mathbb{R}",
+            r"\text{If } x \perp_{BJ} y, \text{ then } (\alpha x) \perp_{BJ} (\beta y) \quad \text{for all } \alpha, \beta \in \mathbb{R}",
             color=BLACK,
         )
-
+    
         # Assumption
         homogeneity_assumption = MathTex(
-            r"\text{Assume } x \perp_{BJ} y: \quad \|x\| \leq \|x + \lambda y\| \quad \forall \lambda \in \mathbb{R}",
+            r"\text{Assume } x \perp_{BJ} y: \quad \|x\| \leq \|x + \lambda y\| \quad \text{for all } \lambda \in \mathbb{R}",
             color=BLACK,
         )
-
+    
         # Goal
         homogeneity_goal = MathTex(
             r"\text{Goal: Show } \|\alpha x\| \leq \|\alpha x + \mu(\beta y)\| \quad \forall \mu \in \mathbb{R}",
             color=BLACK,
         )
-
+    
         # Case 1 title
         # case1_title = MathTex(
         #     r"\text{Case 1: } \alpha \neq 0",
         #     color=BLACK,
         # )
-
+    
         # Case 1 - rewrite
         case1_rewrite = MathTex(
             r"\text{Case 1: } \alpha \neq 0",
             r"\quad \|\alpha x + \mu\beta y\| = |\alpha| \cdot \left\|x + \frac{\mu\beta}{\alpha}y\right\|",
             color=BLACK,
         )
-
+    
         # Case 1 - substitution
         # case1_substitution = MathTex(
         #     r"\text{Let } \lambda_0 = \frac{\mu\beta}{\alpha}",
         #     color=BLACK,
         # )
-
+    
         # Case 1 - apply assumption
         case1_apply = MathTex(
             r"\|x\| \leq \|x + \lambda_0 y\|",
@@ -2333,27 +2394,27 @@ class TitleScene(ThreeDScene):   # Scene
             r"\quad \therefore \|\alpha x\| \leq \|\alpha x + \mu\beta y\|",
             color=BLACK,
         )
-        case1_apply.set_color_by_tex(r"\quad (\text{Let } \lambda_0 = \frac{\mu\beta}{\alpha})",dark_purple)
-        case1_apply.set_color_by_tex(r"quad \therefore \|\alpha x\| \leq \|\alpha x + \mu\beta y\|",dark_purple)
-
+        case1_apply.set_color_by_tex(r"\quad (\text{Let } \lambda_0 = \frac{\mu\beta}{\alpha})", dark_purple)
+        case1_apply.set_color_by_tex(r"quad \therefore \|\alpha x\| \leq \|\alpha x + \mu\beta y\|", dark_purple)
+    
         # Case 1 - multiply
         # case1_multiply = MathTex(
         #     r"|\alpha| \|x\| \leq |\alpha| \|x + \lambda_0 y\|",
         #     color=BLACK,
         # )
-
+    
         # Case 1 - conclusion
         # case1_conclusion = MathTex(
         #     r"\|\alpha x\| \leq \|\alpha x + \mu\beta y\|",
         #     color=dark_purple,
         # )
-
+    
         # Case 2 title
         # case2_title = MathTex(
         #     r"\text{Case 2: } \alpha = 0",
         #     color=BLACK,
         # )
-
+    
         # Case 2 - simplification
         case2_simplification = MathTex(
             r"\text{Case 2: } \alpha = 0",
@@ -2361,57 +2422,67 @@ class TitleScene(ThreeDScene):   # Scene
             # r"\quad 0 \leq \|\mu\beta y\| \quad \text{(Always true by norm properties)}",
             color=BLACK,
         )
-
+    
         # Case 2 - always true
         case2_true = MathTex(
             r"0 \leq \|\mu\beta y\| \quad \text{(Always true by norm properties)} \quad .\blacksquare",
             color=BLACK,
         )
+    
+        # Case 1 and Case 2 are stacked (not side by side) -> no boxes here,
+        # just written line by line, slightly smaller than the statement lines
+        case1_rewrite.scale(0.75)
+        case1_apply.scale(0.75)
+        case2_simplification.scale(0.75)
+        case2_true.scale(0.75)
 
+        case1_group = VGroup(case1_rewrite,case1_apply).arrange(DOWN,buff=0.3)
+        case2_group = VGroup(case2_simplification,case2_true).arrange(DOWN,buff=0.3)
+    
         homo = VGroup(*[
             homogeneity_title,
             homogeneity_statement,
             homogeneity_assumption,
             # homogeneity_goal,
-            VGroup(*[
-                VGroup(*[
-                    # case1_title,
-                    case1_rewrite,
-                    # case1_substitution,
-                    case1_apply,
-                    # case1_conclusion,
-                ]).arrange(DOWN,buff=0.2).scale(0.7).shift(2*LEFT),
-                VGroup(*[
-                    # case2_title,
-                    case2_simplification,
-                    case2_true,
-                ]).arrange(DOWN,buff=0.2).scale(0.7).shift(2*LEFT),
-            ]).arrange(DOWN,buff=0.3),
-        ]).arrange(DOWN,buff=0.3).next_to(box1,DOWN,buff=0.3)
+            case1_group,
+            case2_group,
+        ]).arrange(DOWN, buff=0.55)
+        fit_to_frame(homo, max_width=12.0, max_height=6.5)
+        homo.next_to(title_orth, DOWN, buff=0.5)
 
-        self.play(
-            Write(homo),
-        )
+        box_case1 = property_box(case1_group, dark_purple)
+        box_case2 = property_box(case2_group, dark_purple)
+        i=0
+        for line in homo:
+            self.play(Write(line))
+            self.wait(0.3)
+            if i==2:
+                self.play(Create(box_case1))
+            if i==3:
+                self.play(Create(box_case2))
+            i+=1
         self.wait(1)
         self.play(
             FadeOut(homo),
+            FadeOut(box_case1),
+            FadeOut(box_case2),
         )
-
-        nonadditivity_title_bj = MathTex(r"\text{Non-Additivity Counterexample}",color=dark_terquise)
-
+    
+        nonadditivity_title_bj = MathTex(r"\text{Non-Additivity Counterexample}", color=dark_terquise)
+    
         # Space
         nonadditivity_space_bj = MathTex(
             r"\text{Space: } \mathbb{R}^2 \text{ with } \ell^1 \text{ norm},",
             r"\quad x = (1,0), \quad y = (1,1), \quad z = (1,-1)",
             color=BLACK,
         )
-
+    
         # Vectors
         # nonadditivity_vectors_bj = MathTex(
         #     r"x = (1,0), \quad y = (1,1), \quad z = (1,-1)",
         #     color=BLACK,
         # )
-
+    
         # Part 1 - x ⊥ y (reference)
         nonadditivity_part1 = MathTex(
             r"\text{Step 1: } x \perp_{BJ} y",
@@ -2421,13 +2492,13 @@ class TitleScene(ThreeDScene):   # Scene
             r"\quad \text{(shown earlier)}",
             color=BLACK,
         )
-
+    
         # Part 2 title
         nonadditivity_part2_title = MathTex(
             r"\text{Step 2: Show } x \perp_{BJ} z",
             color=BLACK,
         )
-
+    
         # Part 2 - norm of x
         nonadditivity_part2_norm_x = MathTex(
             r"\|x\|_1 = 1",
@@ -2435,38 +2506,38 @@ class TitleScene(ThreeDScene):   # Scene
             # r"1 \leq |1+\lambda| + |\lambda| \quad \text{(Always true)}",
             color=BLACK,
         )
-
+    
         # Part 2 - norm of x + λz
         # nonadditivity_part2_norm_sum = MathTex(
         #     r"\|x + \lambda z\|_1 = \|(1+\lambda, -\lambda)\|_1 = |1+\lambda| + |\lambda|"
         # )
-
+    
         # Part 2 - inequality
         nonadditivity_part2_inequality = MathTex(
             r"1 \leq |1+\lambda| + |\lambda| \quad \text{(Always true)}",
             color=BLACK,
         )
-
+    
         # Part 2 - conclusion
         # nonadditivity_part2_conclusion = MathTex(
         #     r"\therefore x \perp_{BJ} z",
         #     color=BLACK,
         # )
-
+    
         # Part 3 title
         # nonadditivity_part3_title = MathTex(
         #     r"\text{Show } x \not\perp_{BJ} (y+z)",
         #     color=BLACK,
         # )
-
+    
         # Part 3 - sum
         # nonadditivity_part3_sum = MathTex(
         #     r"y + z = (1,1) + (1,-1) = (2,0)"
         # )
-
+    
         # Part 3 - norm of x
         # nonadditivity_part3_norm_x = MathTex(r"\|x\|_1 = 1")
-
+    
         # Part 3 - norm of x + λ(y+z)
         nonadditivity_part3_norm_sum = MathTex(
             r"\text{Show } x \not\perp_{BJ} (y+z) : ",
@@ -2474,79 +2545,104 @@ class TitleScene(ThreeDScene):   # Scene
             # r"\quad (\text{Required: } 1 \leq |1+2\lambda|)",
             color=BLACK,
         )
-
+    
         # Part 3 - required condition
         # nonadditivity_part3_condition = MathTex(
         #     r"\text{Required: } 1 \leq |1+2\lambda|",
         #     color=BLACK,
         # )
-
+    
         # Part 3 - counterexample
         nonadditivity_part3_counter = MathTex(
             r"(\text{Required: } 1 \leq |1+2\lambda|)",
-            r"\quad  \text{For } \lambda = -\frac{1}{2}: \quad |1+2(-\frac{1}{2})| = 0",
+            r"\quad  \text{For } \lambda = -\frac{1}{2}: \quad 1 \le 0",
             color=BLACK,
         )
-
+    
         # Part 3 - inequality fails
         # nonadditivity_part3_fails = MathTex(
         #     r"1 \leq 0 \quad \text{(False)}",
         #     color=BLACK,
         # )
-
+    
         # Part 3 - conclusion
         # nonadditivity_part3_conclusion = MathTex(
         #     r"\therefore x \not\perp_{BJ} (y+z)",
         #     color=BLACK,
         # )
-
+    
+        # Step 1 / Step 2 sit side by side -> each gets its own box; Part 3
+        # stands alone underneath (no partner), so it stays box-free
+        part1_pair_group = VGroup(*[
+            nonadditivity_part1,
+            non_part1_2,
+        ]).arrange(DOWN, buff=0.25).scale(0.75)
+    
+        part2_group_bj = VGroup(*[
+            nonadditivity_part2_title,
+            nonadditivity_part2_norm_x,
+            nonadditivity_part2_inequality,
+        ]).arrange(DOWN, buff=0.25).scale(0.65)
+    
+        parts_row_bj = VGroup(part1_pair_group, part2_group_bj).arrange(RIGHT, buff=1.0)
+    
+        part3_group_bj = VGroup(*[
+            nonadditivity_part3_norm_sum,
+            nonadditivity_part3_counter,
+        ]).arrange(DOWN, buff=0.3).scale(0.85)
+    
         add = VGroup(*[
             nonadditivity_title_bj,
             nonadditivity_space_bj,
-            # nonadditivity_vectors_bj,
-            # homogeneity_goal,
-            VGroup(*[
-                VGroup(*[
-                    nonadditivity_part1,
-                    non_part1_2,
-                    # case1_rewrite,
-                    # case1_substitution,
-                    # case1_apply,
-                    # case1_conclusion,
-                ]).arrange(DOWN,buff=0.2).scale(0.7).shift(2*LEFT),
-                VGroup(*[
-                    nonadditivity_part2_title,
-                    nonadditivity_part2_norm_x,
-                    nonadditivity_part2_inequality,
-                ]).arrange(DOWN,buff=0.3).scale(0.6).shift(2*LEFT),
-            ]).arrange(RIGHT,buff=1),
-            VGroup(*[
-                # nonadditivity_part3_title,
-                nonadditivity_part3_norm_sum,
-                nonadditivity_part3_counter,
-            ]).arrange(DOWN,buff=0.2).scale(0.8),
-        ]).arrange(DOWN,buff=0.3).next_to(box1,DOWN,buff=0.3)
+            parts_row_bj,
+            part3_group_bj,
+        ]).arrange(DOWN, buff=0.6)
+        fit_to_frame(add, max_width=12.5, max_height=6.5)
+        add.next_to(title_orth, DOWN, buff=0.5)
+    
+        box_part1_bj = property_box(part1_pair_group, dark_terquise)
+        box_part2_bj = property_box(part2_group_bj, dark_terquise)
+        box_part3_bj = property_box(part3_group_bj, dark_terquise)
+    
+        self.play(Write(nonadditivity_title_bj))
+        self.wait(0.3)
+        self.play(Write(nonadditivity_space_bj))
+        self.wait(0.3)
+    
+        self.play(Create(box_part1_bj))
+        self.play(Write(nonadditivity_part1))
+        self.play(Write(non_part1_2))
+        self.wait(0.5)
+    
+        self.play(Create(box_part2_bj))
+        self.play(Write(nonadditivity_part2_title))
+        self.play(Write(nonadditivity_part2_norm_x))
+        self.wait(0.2)
+        self.play(Write(nonadditivity_part2_inequality))
+        self.wait(0.5)
 
-        self.play(
-            Write(add),
-        )
+        self.play(Create(box_part3_bj))
+        self.play(Write(nonadditivity_part3_norm_sum))
+        self.wait(0.3)
+        self.play(Write(nonadditivity_part3_counter))
         self.wait(1)
+    
         self.play(
-            FadeOut(add),
+            FadeOut(VGroup(add, box_part1_bj, box_part2_bj, box_part3_bj)),
         )
-
+    
         existence_title = MathTex(r"\text{Scaler Existence}", color=dark_green)
-
+    
         existence_statement = MathTex(
-            r"\forall\, x ,\ y \in X,\ \exists\, a \in \mathbb{R}: \quad x \perp_{BJ} (ax + y)",
+            r"\text{for all } \, x,y \in X,\ \text{there exist }\, a \in \mathbb{R}: \quad x \perp_{BJ} (ax + y)",
             color=BLACK,
         )
-
+    
         trivial_case = MathTex(
             r"\text{If } x = 0: \quad \|0\| \le \|0 + \lambda(a \cdot 0 + y)\| \quad \text{(trivially true)}",
             color=BLACK,
         )
-
+    
         hb_functional = MathTex(
             r"\text{Assume } x \neq 0. \ \text{By }",
             r"\text{Hahn-Banach}",
@@ -2554,9 +2650,9 @@ class TitleScene(ThreeDScene):   # Scene
             color=BLACK,
         )
         hb_functional.set_color_by_tex(r"\text{Hahn-Banach}", dark_green)
-
+    
         step1_title = MathTex(r"\text{Step 1: Solve for } a", color=BLACK)
-
+    
         step1_solve1 = MathTex(
             r"f(ax + y) = 0",
             color=BLACK,
@@ -2569,49 +2665,63 @@ class TitleScene(ThreeDScene):   # Scene
             r"\Longrightarrow\ a = -\frac{f(y)}{\|x\|^2}",
             color=BLACK,
         )
-
+    
         step2_title = MathTex(r"\text{Step 2: Verify } x \perp_{BJ} (ax + y)", color=BLACK)
-
+    
         step2_body = MathTex(
             r"v = ax + y,\ f(v) = 0 \ \Longrightarrow\ f(x + \lambda v) = f(x) = \|x\|^2",
             color=BLACK,
         )
-
+    
         step2_ineq = MathTex(
             r"\|x\|^2 = f(x + \lambda v) \le \|f\|\,\|x + \lambda v\| = \|x\|\,\|x + \lambda v\|",
             color=BLACK,
         )
-
+    
         step2_conclude = MathTex(
             r"\Longrightarrow\ \|x\| \le \|x + \lambda v\| \quad \therefore\ x \perp_{BJ} (ax + y) \quad .\blacksquare",
             color=BLACK,
         )
-
+    
+        trivial_case.scale(0.9)
+        hb_functional.scale(0.9)
+    
+        # Step 1 / Step 2 sit side by side -> each gets its own box
+        step1_group = VGroup(*[
+            step1_title,
+            step1_solve1,
+            step1_solve2,
+            step1_solve3,
+        ]).arrange(DOWN, buff=0.25).scale(0.75)
+    
+        step2_group = VGroup(*[
+            step2_title,
+            step2_body,
+            step2_ineq,
+            step2_conclude,
+        ]).arrange(DOWN, buff=0.25).scale(0.75)
+    
+        steps_row = VGroup(step1_group, step2_group).arrange(RIGHT, buff=1.0)
+    
         existence = VGroup(*[
             existence_title,
             existence_statement,
-            trivial_case.scale(0.9),
-            hb_functional.scale(0.9),
-            VGroup(*[
-                VGroup(*[
-                    step1_title,
-                    step1_solve1,
-                    step1_solve2,
-                    step1_solve3,
-                ]).arrange(DOWN, buff=0.2).scale(0.7).shift(2 * LEFT),
-                VGroup(*[
-                    step2_title,
-                    step2_body,
-                    step2_ineq,
-                    step2_conclude,
-                ]).arrange(DOWN, buff=0.2).scale(0.7).shift(2 * LEFT),
-            ]).arrange(RIGHT, buff=0.5),
-        ]).arrange(DOWN, buff=0.3).next_to(box1, DOWN, buff=0.3)
-
-        self.play(
-            Write(existence[:2]),
-        )
-        pic_pause = ImageMobject("images/pause.png").scale(1.3).move_to(existence[1].get_center() + 2.5*DOWN)
+            trivial_case,
+            hb_functional,
+            steps_row,
+        ]).arrange(DOWN, buff=0.35)
+        fit_to_frame(existence, max_width=12.5, max_height=6.5)
+        existence.next_to(title_orth, DOWN, buff=0.35)
+    
+        box_step1 = property_box(step1_group, dark_green)
+        box_step2 = property_box(step2_group, dark_green)
+    
+        # teaser: title + statement only, then pause for narration (unchanged idea,
+        # just written as two lines instead of one bulk write)
+        self.play(Write(existence_title))
+        self.wait(0.3)
+        self.play(Write(existence_statement))
+        pic_pause = ImageMobject("images/pause.png").scale(1.3).move_to(existence_statement.get_center() + 2.5 * DOWN)
         self.play(
             FadeIn(pic_pause)
         )
@@ -2622,36 +2732,63 @@ class TitleScene(ThreeDScene):   # Scene
         self.han_banakh_shape(title)
         self.play(
             FadeIn(title_orth),
-            FadeIn(box1),
-            FadeIn(roberts),
-            Write(existence),
+            # FadeIn(box1),
+            # FadeIn(roberts),
         )
+    
+        # full proof, line by line, with the two parallel steps boxed
+        self.play(Write(existence_title))
+        self.wait(0.3)
+        self.play(Write(existence_statement))
+        self.wait(0.3)
+        self.play(Write(trivial_case))
+        self.wait(0.3)
+        self.play(Write(hb_functional))
+        self.wait(0.3)
+    
+        self.play(Create(box_step1))
+        self.play(Write(step1_title))
+        self.play(Write(step1_solve1))
+        self.wait(0.2)
+        self.play(Write(step1_solve2))
+        self.wait(0.2)
+        self.play(Write(step1_solve3))
+        self.wait(0.5)
+    
+        self.play(Create(box_step2))
+        self.play(Write(step2_title))
+        self.play(Write(step2_body))
+        self.wait(0.2)
+        self.play(Write(step2_ineq))
+        self.wait(0.2)
+        self.play(Write(step2_conclude))
         self.wait(1)
+    
         self.play(
-            FadeOut(existence),
+            FadeOut(VGroup(existence, box_step1, box_step2)),
         )
-
+    
         headers = [
             (r"\text{Symmetry}", dark_pink),
             (r"\text{Homogeneity}", dark_purple),
             (r"\text{Additivity}", dark_terquise),
             (r"\text{Scalar Existence}", dark_green),
         ]
-
+    
         col_labels = [MathTex(h).set_color(color) for h, color in headers]
-
+    
         cross = MathTex(r"\Large \times").set_color(RED)
         check = MathTex(r"\Large \checkmark").set_color(GREEN)
-        
+    
         row = [
             MathTex(r"\Large \times").set_color(RED),
             MathTex(r"\Large \checkmark").set_color(GREEN),
             MathTex(r"\Large \times").set_color(RED),
             MathTex(r"\Large \checkmark").set_color(GREEN),
         ]
-        
+    
         row_label = MathTex(r"\text{Birkhoff}", color=BLACK)
-
+    
         table = MobjectTable(
             [row],
             row_labels=[row_label],
@@ -2660,19 +2797,19 @@ class TitleScene(ThreeDScene):   # Scene
             line_config={"stroke_width": 3, "color": GRAY},
             h_buff=0.3,
         )
-
-        table.scale(1).next_to(box1,DOWN,buff=0.5)
-
+    
+        table.scale(1).next_to(box1, DOWN, buff=0.5)
+    
         self.play(
             Create(table),
-            run_time = 3,
+            run_time=3,
         )
         self.wait(1)
         self.play(
             FadeOut(table),
             FadeOut(title_orth),
-            FadeOut(box1),
-            FadeOut(roberts),
+            # FadeOut(box1),
+            # FadeOut(roberts),
         )
         self.wait(1)
 
@@ -7457,7 +7594,7 @@ class TitleScene(ThreeDScene):   # Scene
 
         # self.scene8_SubScene3_0(title)
         # self.scene8_SubScene3_1(title)  # این یک طرفه هست و اون طرفش درست نیست مثل اینکه  ->  درستش کردم :)
-        self.scene8_SubScene3_2(title)
+        # self.scene8_SubScene3_2(title)
 
         ########## birkhof
 
@@ -7468,7 +7605,7 @@ class TitleScene(ThreeDScene):   # Scene
         # self.han_banakh_def(title)  # این رو برای تست اینجا گذاشتم
         # self.han_banakh_shape(title)  # این رو برای تست اینجا گذاشتم
 
-        # self.scene8_SubScene6(title)
+        self.scene8_SubScene6(title)
 
         # self.scene8_SubScene6_0(title)
         # self.scene8_SubScene6_1(title)
