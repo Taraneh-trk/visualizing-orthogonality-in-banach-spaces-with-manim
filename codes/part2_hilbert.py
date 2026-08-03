@@ -6424,12 +6424,12 @@ class TitleScene(ThreeDScene):   # Scene
         self.play(
             Write(idea_text),
         )
-        self.wait(0.5)
+        self.wait(2)
         self.play(
             Create(theory1_box),
             Write(theory1_text),
         )
-        self.wait(1)
+        self.wait(3)
         self.play(
             FadeOut(theory1_box),
             FadeOut(theory1_text),
@@ -6440,31 +6440,31 @@ class TitleScene(ThreeDScene):   # Scene
             Create(theory2_box),
             Write(theory2_text),
         )
-        self.wait(0.5)
+        self.wait(3)
         line4 = line4.copy().move_to(title.get_center()+LEFT*3.5) # +DOWN*0.5
         line5 = line5.copy().move_to(title.get_center()+RIGHT*3.5)
         self.play(
             TransformMatchingShapes(VGroup(theory2_box, theory2_text), VGroup(line4, line5)),
         )
-        self.wait(0.5)
+        self.wait(1)
         line4.set_color_by_tex(r"\lambda", dark_pink)
         lambda_condition = MathTex(
             r"\alpha_1\le\lambda\le\alpha_2",
             color=dark_pink,
         ).next_to(line4, DOWN, buff=0.5)
-        self.play(
-            Write(lambda_condition),
-        )
-        self.wait(0.5)
+        # self.play(
+        #     Write(lambda_condition),
+        # )
+        # self.wait(0.5)
         line5.set_color_by_tex(r"\mu", dark_red)
         mu_condition = MathTex(
             r"\beta_1\le\mu\le\beta_2",
             color=dark_red,
         ).next_to(line5, DOWN, buff=0.5)
-        self.play(
-            Write(mu_condition),
-        )
-        self.wait(0.5)
+        # self.play(
+        #     Write(mu_condition),
+        # )
+        # self.wait(0.5)
 
         question_text = Text(
             " When are these coefficients unique ?",
@@ -6515,27 +6515,27 @@ class TitleScene(ThreeDScene):   # Scene
                 theoream3_text3,
                 theoream3_text4,
             ).arrange(RIGHT, buff=1)
-        ).arrange(DOWN, buff=0.2).move_to(question_text.get_center()+1.5*DOWN+0.5*LEFT)
+        ).arrange(DOWN, buff=0.2).move_to(question_text.get_center()+1.5*DOWN+0.5*LEFT+1*UP)
 
         self.play(
             Write(theoream_text),
         )
-        self.wait(0.5)
+        self.wait(3)
         theoream3_text30 = theoream3_text30.copy().move_to(lambda_condition.get_center())
         theoream3_text40 = theoream3_text40.copy().move_to(mu_condition.get_center())
         self.play(
-            TransformMatchingShapes(VGroup(theoream_text, lambda_condition, mu_condition), VGroup(theoream3_text30, theoream3_text40)),
+            TransformMatchingShapes(VGroup(theoream_text), VGroup(theoream3_text30, theoream3_text40)),
         )
-        self.wait(0.5)
+        self.wait(1)
         question_text = question_text.copy().shift(1*DOWN)
-        self.play(
-            Write(question_text),
-        )
-        self.wait(0.5)
-        self.play(
-            FadeOut(question_text),
-        )
-        self.wait(0.5)
+        # self.play(
+        #     Write(question_text),
+        # )
+        # self.wait(0.5)
+        # self.play(
+        #     FadeOut(question_text),
+        # )
+        # self.wait(0.5)
         left_part = VGroup(line5, theoream3_text40)
         left_init_center = left_part.get_center()
         right_part = VGroup(line4, theoream3_text30)
@@ -6573,7 +6573,7 @@ class TitleScene(ThreeDScene):   # Scene
             Create(box_right),
             Write(right_unique_text),
         )
-        self.wait(0.5)
+        self.wait(3)
 
         self.play(
             FadeOut(VGroup(box_right, right_unique_text)),
@@ -6585,7 +6585,7 @@ class TitleScene(ThreeDScene):   # Scene
             left_part.animate.move_to(title.get_center()+0.6*DOWN),
             FadeOut(right_part),
         )
-        self.wait(0.5)
+        self.wait(2)
 
         title_sc = MathTex(r"\textbf{Strictly Convex}", color=BLACK, font_size=70).to_edge(UP)
 
@@ -6623,7 +6623,7 @@ class TitleScene(ThreeDScene):   # Scene
             Create(box),
             Write(group),
         )
-        self.wait(0.5)
+        self.wait(3)
 
         self.play(
             # FadeOut(title_sc),
@@ -6677,7 +6677,7 @@ class TitleScene(ThreeDScene):   # Scene
         ).next_to(mid_dot_r, DOWN, buff=0.35)
 
         self.play(FadeIn(mid_dot_r), Write(interior_note))
-        self.wait(1)
+        self.wait(2)
 
         top_left_corner = square.get_corner(UL)
         top_right_corner = square.get_corner(UR)
@@ -6707,7 +6707,7 @@ class TitleScene(ThreeDScene):   # Scene
         ).next_to(midpoint_sq, DOWN, buff=2)
 
         self.play(FadeIn(mid_dot_sq), Write(boundary_note))
-        self.wait(1)
+        self.wait(2)
 
         self.play(
             *[FadeOut(mob) for mob in [dot_x, dot_y, label_x, label_y,
@@ -6749,7 +6749,7 @@ class TitleScene(ThreeDScene):   # Scene
             Create(box_left),
             Write(left_unique_text),
         )
-        self.wait(0.5)
+        self.wait(3)
 
         self.wait(1)
         self.play(
@@ -6785,11 +6785,11 @@ class TitleScene(ThreeDScene):   # Scene
         self.play(
             Write(x_y),
         )
-        self.wait(0.5)
+        self.wait(1)
         self.play(
             Write(x_p_y),
         )
-        self.wait(1)
+        self.wait(1.5)
         self.play(
             Write(f_lambda[0]),
         )
@@ -6797,11 +6797,11 @@ class TitleScene(ThreeDScene):   # Scene
         self.play(
             TransformFromCopy(x_p_y[1], f_lambda[1]),
         )
-        self.wait(0.5)
+        self.wait(2)
         self.play(
             Write(f_lambda_exp),
         )
-        self.wait(0.5)
+        self.wait(2)
         f_l = VGroup(f_lambda, f_lambda_exp)
         self.play(
             f_l.animate.move_to(title.get_center()),
@@ -6899,7 +6899,7 @@ class TitleScene(ThreeDScene):   # Scene
         min_label = MathTex(r"\lambda = 0 \; (\text{minimum})", color=ORANGE, font_size=32).next_to(min_dot, DOWN, buff=0.3)
 
         self.play(FadeIn(min_dot), Write(min_label))
-        self.wait(1)
+        self.wait(2)
 
         moving_dot.clear_updaters()
 
@@ -6946,16 +6946,16 @@ class TitleScene(ThreeDScene):   # Scene
         self.play(
             Write(ferma_text),
         )
-        self.wait(0.5)
+        self.wait(1.5)
         self.play(
             Create(condition_box),
             Write(condition),
         )
-        self.wait(0.5)
+        self.wait(1.5)
         self.play(
             Write(result_text_1),
         )
-        self.wait(0.5)
+        self.wait(2)
         self.play(
             Write(result_text_2),
         )
@@ -6964,7 +6964,7 @@ class TitleScene(ThreeDScene):   # Scene
             Write(result_text_3),
         )
 
-        self.wait(1)
+        self.wait(2)
         self.play(
             *[FadeOut(mob) for mob in self.mobjects]
         )
@@ -7605,7 +7605,7 @@ class TitleScene(ThreeDScene):   # Scene
         # self.han_banakh_def(title)  # این رو برای تست اینجا گذاشتم
         # self.han_banakh_shape(title)  # این رو برای تست اینجا گذاشتم
 
-        self.scene8_SubScene6(title)
+        # self.scene8_SubScene6(title)
 
         # self.scene8_SubScene6_0(title)
         # self.scene8_SubScene6_1(title)
@@ -7613,7 +7613,7 @@ class TitleScene(ThreeDScene):   # Scene
 
         ########## isosceles
 
-        # self.scene8_SubScene7(title)
+        self.scene8_SubScene7(title)
 
         # self.scene8_SubScene8(title)
 
