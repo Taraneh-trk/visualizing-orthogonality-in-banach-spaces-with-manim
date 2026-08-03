@@ -1527,7 +1527,7 @@ class TitleScene(ThreeDScene):   # Scene
         robert_image = ImageMobject("images/Robert_C._James.png").scale(2).shift(1.5*DOWN)
 
         robert_def_part1 = MathTex(
-            r"\text{Two elements } x \text{ and } y \text{ in a Banach space } X \text{ are said to}",
+            r"\text{Two elements } x \text{ and } y \text{ in a Normed space } X \text{ are said to}",
             color=BLACK,
         )
         robert_def_part2 = MathTex(
@@ -1550,20 +1550,20 @@ class TitleScene(ThreeDScene):   # Scene
             Write(title_orth),
         )
         self.wait(0.5)
-        self.play(
-            Write(year_text),
-            FadeIn(robert_image),
-        )
-        self.wait(0.5)
-        self.play(
-            FadeOut(year_text),
-            FadeOut(robert_image),
-        )
+        # self.play(
+        #     # Write(year_text),
+        #     # FadeIn(robert_image),
+        # )
+        # self.wait(0.5)
+        # self.play(
+        #     # FadeOut(year_text),
+        #     # FadeOut(robert_image),
+        # )
         self.play(
             Create(box),
             Write(group),
         )
-        self.wait(1)
+        self.wait(3)
         self.play(
             FadeOut(title_orth),
             FadeOut(group),
@@ -1625,7 +1625,7 @@ class TitleScene(ThreeDScene):   # Scene
     def scene8_SubScene8(self, title):
         self.wait(0.5)
         image = ImageMobject("images/book_brain.png").scale(2).to_corner(DL)
-        self.add(image)
+        # self.add(image)
 
         title_orth = Tex("Isosceles Orthogonality", color=dark_blue, font_size=60).to_corner(UL).shift(0.15*UP)
 
@@ -1677,8 +1677,8 @@ class TitleScene(ThreeDScene):   # Scene
         )
 
         tangent_line1 = Arrow(
-            start=arrow_y.get_end(),
-            end=arrow_x.get_end(),
+            start=arrow_x.get_end(),
+            end=arrow_y.get_end(),
             buff=0,
             stroke_width=4,
             color=dark_red,
@@ -1703,15 +1703,15 @@ class TitleScene(ThreeDScene):   # Scene
             # quadrant=(1,-1)
         )
 
-        x_text = MathTex(r"\vec{x}", color=dark_green).scale(1.0).next_to(
+        x_text = MathTex(r"\vec{y}", color=dark_green).scale(1.0).next_to(
             arrow_x.get_center(), direction=DOWN, buff=0.15
         )
 
-        y_text = MathTex(r"\vec{y}", color=dark_pink).scale(1.0).next_to(
+        y_text = MathTex(r"\vec{x}", color=dark_pink).scale(1.0).next_to(
             arrow_y, direction=UP, buff=0.1
         )
 
-        x_inv_text = MathTex(r" - \vec{x}", color=dark_green).scale(1.0).next_to(
+        x_inv_text = MathTex(r" - \vec{y}", color=dark_green).scale(1.0).next_to(
             arrow_x_inv.get_center(), direction=DOWN, buff=0.15
         )
 
@@ -1787,12 +1787,12 @@ class TitleScene(ThreeDScene):   # Scene
         self.play(
             Create(arc_orthogonal),
         )
-        self.wait(0.5)
+        self.wait(1.5)
         self.play(
             GrowArrow(arrow_x_inv),
             Write(x_inv_text),
         )
-        self.wait(0.5)
+        self.wait(1.5)
         self.play(
             GrowArrow(tangent_line1),
             Write(tangent_text1),
@@ -1802,18 +1802,18 @@ class TitleScene(ThreeDScene):   # Scene
             GrowArrow(tangent_line2),
             Write(tangent_text2),
         )
-        self.wait(0.5)
+        self.wait(1.5)
         self.play(
             Create(equality_marks),
         )
 
-        self.wait(1.5)
+        self.wait(2)
         self.play(
             FadeOut(title_orth),
             FadeOut(all_shapes),
             FadeOut(roberts),
             FadeOut(box1),
-            FadeOut(image),
+            # FadeOut(image),
         )
         self.wait(1)
 
@@ -2832,92 +2832,92 @@ class TitleScene(ThreeDScene):   # Scene
         self.play(
             FadeIn(title_orth),
         )
-        self.play(
-            Create(box1),
-            Write(roberts),
-        )
+        # self.play(
+        #     Create(box1),
+            # Write(roberts),
+        # )
         self.wait(0.5)
 
         # proof and counterexample
 
-        symmetry_title = MathTex(
-            r"\text{Symmetry}",
-            color=dark_pink,
-        )
+        # symmetry_title = MathTex(
+        #     r"\text{Symmetry}",
+        #     color=dark_pink,
+        # )
 
-        # Statement
-        symmetry_statement = MathTex(
-            r"\text{If } x \perp_I y, \text{ then } y \perp_I x",
-            color=BLACK,
-        )
-
-        # Assumption
-        symmetry_assumption = MathTex(
-            r"\text{Assume } x \perp_I y: \quad \|x + y\| = \|x - y\|",
-            color=BLACK,
-        )
-
-        # Goal
-        symmetry_goal = MathTex(
-            r"\text{Goal: Show } \|y + x\| = \|y - x\|",
-            color=BLACK,
-        )
-
-        # Left side
-        symmetry_left = MathTex(
-            r"\|y + x\| = \|x + y\| \quad \text{(commutativity of vector addition)}",
-            color=BLACK,
-        )
-
-        # Right side - step 1
-        symmetry_right = MathTex(
-            r"\|y - x\| = \|-(x - y)\| = \|x - y\|",
-            r"\quad \text{(norm property)}",
-            color=BLACK,
-        )
-
-        # Right side - step 2
-        # symmetry_right_2 = MathTex(
-        #     r"\|-(x - y)\| = \|x - y\| \quad \text{(norm property: } \|-v\| = \|v\|\text{)}",
+        # # Statement
+        # symmetry_statement = MathTex(
+        #     r"\text{If } x \perp_I y, \text{ then } y \perp_I x",
         #     color=BLACK,
         # )
 
-        # Combine
-        symmetry_combine = MathTex(
-            r"\|y + x\| = \|x + y\| = \|x - y\| = \|y - x\|",
-            r"\quad . \blacksquare",
-            color=BLACK,
-        )
-
-        # Conclusion
-        # symmetry_conclusion = MathTex(
-        #     r"\therefore y \perp_I x",
+        # # Assumption
+        # symmetry_assumption = MathTex(
+        #     r"\text{Assume } x \perp_I y: \quad \|x + y\| = \|x - y\|",
         #     color=BLACK,
         # )
 
-        sym = VGroup(*[
-            symmetry_title,
-            symmetry_statement,
-            symmetry_assumption,
-            symmetry_goal,
-            VGroup(*[
-                VGroup(*[
-                    symmetry_left,
-                ]).arrange(DOWN,buff=0.2).scale(0.7).shift(2*LEFT),
-                VGroup(*[
-                    symmetry_right,
-                ]).arrange(DOWN,buff=0.2).scale(0.7).shift(2*LEFT),
-            ]).arrange(DOWN,buff=0.5),
-            symmetry_combine,
-        ]).arrange(DOWN,buff=0.3).next_to(box1,DOWN,buff=0.3)
+        # # Goal
+        # symmetry_goal = MathTex(
+        #     r"\text{Goal: Show } \|y + x\| = \|y - x\|",
+        #     color=BLACK,
+        # )
 
-        self.play(
-            Write(sym),
-        )
-        self.wait(1)
-        self.play(
-            FadeOut(sym),
-        )
+        # # Left side
+        # symmetry_left = MathTex(
+        #     r"\|y + x\| = \|x + y\| \quad \text{(commutativity of vector addition)}",
+        #     color=BLACK,
+        # )
+
+        # # Right side - step 1
+        # symmetry_right = MathTex(
+        #     r"\|y - x\| = \|-(x - y)\| = \|x - y\|",
+        #     r"\quad \text{(norm property)}",
+        #     color=BLACK,
+        # )
+
+        # # Right side - step 2
+        # # symmetry_right_2 = MathTex(
+        # #     r"\|-(x - y)\| = \|x - y\| \quad \text{(norm property: } \|-v\| = \|v\|\text{)}",
+        # #     color=BLACK,
+        # # )
+
+        # # Combine
+        # symmetry_combine = MathTex(
+        #     r"\|y + x\| = \|x + y\| = \|x - y\| = \|y - x\|",
+        #     r"\quad . \blacksquare",
+        #     color=BLACK,
+        # )
+
+        # # Conclusion
+        # # symmetry_conclusion = MathTex(
+        # #     r"\therefore y \perp_I x",
+        # #     color=BLACK,
+        # # )
+
+        # sym = VGroup(*[
+        #     symmetry_title,
+        #     symmetry_statement,
+        #     symmetry_assumption,
+        #     symmetry_goal,
+        #     VGroup(*[
+        #         VGroup(*[
+        #             symmetry_left,
+        #         ]).arrange(DOWN,buff=0.2).scale(0.7).shift(2*LEFT),
+        #         VGroup(*[
+        #             symmetry_right,
+        #         ]).arrange(DOWN,buff=0.2).scale(0.7).shift(2*LEFT),
+        #     ]).arrange(DOWN,buff=0.5),
+        #     symmetry_combine,
+        # ]).arrange(DOWN,buff=0.3).next_to(box1,DOWN,buff=0.3)
+
+        # self.play(
+        #     Write(sym),
+        # )
+        # self.wait(1)
+        # self.play(
+        #     FadeOut(sym),
+        # )
 
         nonhomogeneity_title_iso = MathTex(
             r"\text{Non-Homogeneity Counterexample}",
@@ -2944,21 +2944,21 @@ class TitleScene(ThreeDScene):   # Scene
 
         # Part 1 - x+y
         nonhomogeneity_part1_sum = MathTex(
-            r"\|x + y\|_1 = 4",
+            r"\|x + y\|_1 = 4 = \|x - y\|_1",
             color=BLACK,
         )
 
         # Part 1 - x-y
-        nonhomogeneity_part1_diff = MathTex(
-            r"\|x - y\|_1 = 4",
-            color=BLACK,
-        )
+        # nonhomogeneity_part1_diff = MathTex(
+        #     r" = 4",
+        #     color=BLACK,
+        # )
 
         # Part 1 - conclusion
-        nonhomogeneity_part1_conclusion = MathTex(
-            r"4 = 4 \implies x \perp_I y",
-            color=BLACK,
-        )
+        # nonhomogeneity_part1_conclusion = MathTex(
+        #     r"4 = 4 \implies x \perp_I y",
+        #     color=BLACK,
+        # )
 
         # Part 2 title
         nonhomogeneity_part2_title = MathTex(
@@ -2974,48 +2974,74 @@ class TitleScene(ThreeDScene):   # Scene
 
         # Part 2 - 2x+y
         nonhomogeneity_part2_sum = MathTex(
-            r"\|2x + y\|_1 = 7",
+            r"\|2x + y\|_1 = 7 \neq 5 = \|2x - y\|_1",
             color=BLACK,
         )
 
         # Part 2 - 2x-y
-        nonhomogeneity_part2_diff = MathTex(
-            r"\|2x - y\|_1 = 5",
-            color=BLACK,
-        )
+        # nonhomogeneity_part2_diff = MathTex(
+        #     r" = 5",
+        #     color=BLACK,
+        # )
 
         # Part 2 - conclusion
-        nonhomogeneity_part2_conclusion = MathTex(
-            r"7 \neq 5 \implies (2x) \not\perp_I y",
-            color=BLACK,
-        )
+        # nonhomogeneity_part2_conclusion = MathTex(
+        #     r"7 \neq 5 \implies (2x) \not\perp_I y",
+        #     color=BLACK,
+        # )
+
+        group_step1_homo = VGroup(*[
+                            nonhomogeneity_part1_title,
+                            nonhomogeneity_part1_sum,
+                            # nonhomogeneity_part1_diff,
+                            # nonhomogeneity_part1_conclusion
+                        ]).arrange(DOWN,buff=0.2).scale(0.8).shift(2*LEFT)
+        group_step2_homo = VGroup(*[
+                            nonhomogeneity_part2_title,
+                            nonhomogeneity_part2_sum,
+                            # nonhomogeneity_part2_diff,
+                            # nonhomogeneity_part2_conclusion
+                        ]).arrange(DOWN,buff=0.2).scale(0.8).shift(2*LEFT)
+
 
         sym = VGroup(*[
             nonhomogeneity_title_iso,
             nonhomogeneity_space_iso,
             nonhomogeneity_vectors_iso,
             VGroup(*[
-                VGroup(*[
-                    nonhomogeneity_part1_title,
-                    nonhomogeneity_part1_sum,
-                    nonhomogeneity_part1_diff,
-                    nonhomogeneity_part1_conclusion
-                ]).arrange(DOWN,buff=0.2).scale(0.7).shift(2*LEFT),
-                VGroup(*[
-                    nonhomogeneity_part2_title,
-                    nonhomogeneity_part2_sum,
-                    nonhomogeneity_part2_diff,
-                    nonhomogeneity_part2_conclusion
-                ]).arrange(DOWN,buff=0.2).scale(0.8).shift(2*LEFT),
+                group_step1_homo,
+                group_step2_homo
             ]).arrange(RIGHT,buff=1),
-        ]).arrange(DOWN,buff=0.3).next_to(box1,DOWN,buff=0.3)
+        ]).arrange(DOWN,buff=0.6).next_to(title_orth,DOWN,buff=0.3)
+        def property_box(mobject, color):
+                    return SurroundingRectangle(
+                        mobject,
+                        color=color,
+                        buff=0.2,
+                        fill_opacity=0.1,
+                        stroke_width=3,
+                        corner_radius=0.15,
+                    )
 
+        homo1_box = property_box(group_step1_homo, dark_purple)
+        homo2_box = property_box(group_step2_homo, dark_purple)
+
+        # Write first three lines (title, space, vectors)
+        for i in range(3):
+            self.play(Write(sym[i]))
+            self.wait(0.5)
+
+        # Now handle the combined group: box1, then content1, box2, then content2
+        self.play(Create(homo1_box))
+        self.play(Write(group_step1_homo))
+        self.wait(0.5)
+        self.play(Create(homo2_box))
+        self.play(Write(group_step2_homo))
+        self.wait(0.5)
+
+        self.wait(2)
         self.play(
-            Write(sym),
-        )
-        self.wait(1)
-        self.play(
-            FadeOut(sym),
+            FadeOut(VGroup(sym, homo1_box, homo2_box)),
         )
 
         nonadditivity_title_iso = MathTex(
@@ -3043,21 +3069,21 @@ class TitleScene(ThreeDScene):   # Scene
 
         # Part 1 - x+y
         nonadditivity_part1_sum_iso = MathTex(
-            r"\|x + y\|_1 = 3",
+            r"\|x + y\|_1 = 3 = \|x - y\|_1",
             color=BLACK,
         )
 
         # Part 1 - x-y
-        nonadditivity_part1_diff_iso = MathTex(
-            r"\|x - y\|_1 = 3",
-            color=BLACK,
-        )
+        # nonadditivity_part1_diff_iso = MathTex(
+        #     r" = 3",
+        #     color=BLACK,
+        # )
 
-        # Part 1 - conclusion
-        nonadditivity_part1_conclusion_iso = MathTex(
-            r"3 = 3 \implies x \perp_I y",
-            color=BLACK,
-        )
+        # # Part 1 - conclusion
+        # nonadditivity_part1_conclusion_iso = MathTex(
+        #     r"3 = 3 \implies x \perp_I y",
+        #     color=BLACK,
+        # )
 
         # Part 2 title
         nonadditivity_part2_title_iso = MathTex(
@@ -3067,25 +3093,25 @@ class TitleScene(ThreeDScene):   # Scene
 
         # Part 2 - x+z
         nonadditivity_part2_sum_iso = MathTex(
-            r"\|x + z\|_1 = 4",
+            r"\|x + z\|_1 = 4 = \|x - z\|_1",
             color=BLACK,
         )
 
         # Part 2 - x-z
-        nonadditivity_part2_diff_iso = MathTex(
-            r"\|x - z\|_1 = 4",
-            color=BLACK,
-        )
+        # nonadditivity_part2_diff_iso = MathTex(
+        #     r" = 4",
+        #     color=BLACK,
+        # )
 
-        # Part 2 - conclusion
-        nonadditivity_part2_conclusion_iso = MathTex(
-            r"4 = 4 \implies x \perp_I z",
-            color=BLACK,
-        )
+        # # Part 2 - conclusion
+        # nonadditivity_part2_conclusion_iso = MathTex(
+        #     r"4 = 4 \implies x \perp_I z",
+        #     color=BLACK,
+        # )
 
         # Part 3 title
         nonadditivity_part3_title_iso = MathTex(
-            r"\text{Step 3: Check } x \perp_I (y+z)",
+            r"\text{Step 3: }",
             color=BLACK,
         )
 
@@ -3096,60 +3122,84 @@ class TitleScene(ThreeDScene):   # Scene
 
         # Part 3 - x+(y+z)
         nonadditivity_part3_xplus_iso = MathTex(
-            r"\|x + (y+z)\|_1 = 4",
+            r"\|x + (y+z)\|_1 = 4 \neq 2 = \|x - (y+z)\|_1",
+            r"\implies x \not\perp_I (y+z)",
             color=BLACK,
         )
 
         # Part 3 - x-(y+z)
-        nonadditivity_part3_xminus_iso = MathTex(
-            r"\|x - (y+z)\|_1 = 2",
-            color=BLACK,
-        )
+        # nonadditivity_part3_xminus_iso = MathTex(
+        #     r" = 2",
+        #     color=BLACK,
+        # )
 
-        # Part 3 - note
-        nonadditivity_part3_note = MathTex(
-            r"4 \neq 2 \implies x \not\perp_I (y+z)",
-            color=BLACK,
-        )
+        # # Part 3 - note
+        # nonadditivity_part3_note = MathTex(
+        #     r"4 \neq 2 \implies x \not\perp_I (y+z)",
+        #     color=BLACK,
+        # )
+
+        add1_group = VGroup(*[
+                            nonadditivity_part1_title_iso,
+                            nonadditivity_part1_sum_iso,
+                            # nonadditivity_part1_diff_iso,
+                            # nonadditivity_part1_conclusion_iso
+                        ]).arrange(DOWN,buff=0.2).scale(0.7).shift(2*LEFT)
+        add2_group = VGroup(*[
+                            nonadditivity_part2_title_iso,
+                            nonadditivity_part2_sum_iso,
+                            # nonadditivity_part2_diff_iso,
+                            # nonadditivity_part2_conclusion_iso
+                        ]).arrange(DOWN,buff=0.2).scale(0.8).shift(2*LEFT)
+        add3_group = VGroup(*[
+                            nonadditivity_part3_title_iso,
+                            nonadditivity_part3_xplus_iso,
+                            # nonadditivity_part3_xminus_iso,
+                            # nonadditivity_part3_note,
+                        ]).arrange(DOWN,buff=0.2).scale(0.8)
 
         sym = VGroup(*[
             nonadditivity_title_iso,
             nonadditivity_space_iso,
             nonadditivity_vectors_iso,
             VGroup(*[
-                VGroup(*[
-                    nonadditivity_part1_title_iso,
-                    nonadditivity_part1_sum_iso,
-                    nonadditivity_part1_diff_iso,
-                    nonadditivity_part1_conclusion_iso
-                ]).arrange(DOWN,buff=0.2).scale(0.7).shift(2*LEFT),
-                VGroup(*[
-                    nonadditivity_part2_title_iso,
-                    nonadditivity_part2_sum_iso,
-                    nonadditivity_part2_diff_iso,
-                    nonadditivity_part2_conclusion_iso
-                ]).arrange(DOWN,buff=0.2).scale(0.8).shift(2*LEFT),
-                VGroup(*[
-                nonadditivity_part3_title_iso,
-                nonadditivity_part3_xplus_iso,
-                nonadditivity_part3_xminus_iso,
-                nonadditivity_part3_note,
-            ]).arrange(DOWN,buff=0.2).scale(0.8),
+                add1_group,
+                add2_group,
             ]).arrange(RIGHT,buff=1),
-        ]).arrange(DOWN,buff=0.3).next_to(box1,DOWN,buff=0.3)
+            add3_group,
+        ]).arrange(DOWN,buff=0.6).next_to(title_orth,DOWN,buff=0.3)
 
+        add1_box = property_box(add1_group, dark_terquise)
+        add2_box = property_box(add2_group, dark_terquise)
+        add3_box = property_box(add3_group, dark_terquise)
+        
+        # Write first three lines
+        for i in range(3):
+            self.play(Write(sym[i]))
+            self.wait(0.5)
+
+        # Handle combined group (index 3): add1_box + add1_group, add2_box + add2_group
+        self.play(Create(add1_box))
+        self.play(Write(add1_group))
+        self.wait(0.5)
+        self.play(Create(add2_box))
+        self.play(Write(add2_group))
+        self.wait(0.5)
+
+        # Then handle index 4: add3_box + add3_group
+        self.play(Create(add3_box))
+        self.play(Write(add3_group))
+        self.wait(0.5)
+
+        self.wait(2)
         self.play(
-            Write(sym),
-        )
-        self.wait(1)
-        self.play(
-            FadeOut(sym),
+            FadeOut(VGroup(sym, add1_box, add2_box, add3_box)),
         )
 
         existence_title = MathTex(r"\text{Scalar Existence}", color=dark_green)
 
         existence_statement = MathTex(
-            r"\forall\, x,\ y \in X,\ \exists\, a \in \mathbb{R}: \quad x \perp_I (ax + y)",
+            r"\text{ for all } \, x,\ y \in X,\ \text{ there exist } \, a \in \mathbb{R}: \quad x \perp_I (ax + y)",
             color=BLACK,
         )
 
@@ -3201,6 +3251,17 @@ class TitleScene(ThreeDScene):   # Scene
         )
         conclude.set_color_by_tex(r"\text{IVT}", dark_green)
 
+        sc1_group = VGroup(*[
+                            step1_title,
+                            step1_body,
+                        ]).arrange(DOWN, buff=0.2).scale(0.8)
+
+        sc2_group = VGroup(*[
+                            step2_title,
+                            step2_pos,
+                            step2_neg,
+                        ]).arrange(DOWN, buff=0.2).scale(0.8)
+
         existence = VGroup(*[
             existence_title,
             existence_statement,
@@ -3208,25 +3269,35 @@ class TitleScene(ThreeDScene):   # Scene
             trivial_case.scale(0.8),
             define_f.scale(0.8),
             VGroup(
-                VGroup(*[
-                    step1_title,
-                    step1_body,
-                ]).arrange(DOWN, buff=0.2).scale(0.7),
-                VGroup(*[
-                    step2_title,
-                    step2_pos,
-                    step2_neg,
-                ]).arrange(DOWN, buff=0.2).scale(0.7)
-            ).arrange(RIGHT, buff=0.5),
+                sc1_group,
+                sc2_group,
+            ).arrange(RIGHT, buff=1),
             conclude.scale(0.8),
-        ]).arrange(DOWN, buff=0.2).next_to(box1, DOWN, buff=0.2)
+        ]).arrange(DOWN, buff=0.4).next_to(title_orth, DOWN, buff=0.2) #.scale(1.1)
 
+        sc1_box = property_box(sc1_group, dark_green)
+        sc2_box = property_box(sc2_group, dark_green)
+        
+        # Write indices 0 to 4 normally
+        for i in range(5):
+            self.play(Write(existence[i]))
+            self.wait(0.5)
+
+        # Handle index 5: combined group
+        self.play(Create(sc1_box))
+        self.play(Write(sc1_group))
+        self.wait(0.5)
+        self.play(Create(sc2_box))
+        self.play(Write(sc2_group))
+        self.wait(0.5)
+
+        # Write index 6: conclude
+        self.play(Write(existence[6]))
+        self.wait(0.5)
+
+        self.wait(2)
         self.play(
-            Write(existence),
-        )
-        self.wait(1)
-        self.play(
-            FadeOut(existence),
+            FadeOut(VGroup(existence, sc1_box, sc2_box)),
         )
 
         headers = [
@@ -3265,11 +3336,11 @@ class TitleScene(ThreeDScene):   # Scene
             Create(table),
             run_time = 3,
         )
-        self.wait(1)
+        self.wait(2)
         self.play(
             FadeOut(title_orth),
-            FadeOut(box1),
-            FadeOut(roberts),
+            # FadeOut(box1),
+            # FadeOut(roberts),
             FadeOut(table),
         )
         self.wait(1)
@@ -4733,15 +4804,15 @@ class TitleScene(ThreeDScene):   # Scene
         self.play(
             Create(col_box),
         )
-        self.wait(0.5)
-        self.play(
-            Write(definition_text),
-        )
-        self.wait(0.5)
-        self.play(
-            FadeOut(definition_text),
-        )
-        self.wait(0.5)
+        # self.wait(0.5)
+        # self.play(
+        #     Write(definition_text),
+        # )
+        # self.wait(0.5)
+        # self.play(
+        #     FadeOut(definition_text),
+        # )
+        self.wait(1)
 
         theoream_title = Text("Characterization of Inner Product Spaces", font_size=40, color=dark_blue)
         theoream_text1 = MathTex(r"\text{Let } X \text{ be a real normed space with } \dim(X) \ge 2. ", color=BLACK)
@@ -4834,19 +4905,19 @@ class TitleScene(ThreeDScene):   # Scene
             Write(theoream_title),
             Write(theoream_text),
         )
-        self.wait(0.5)
+        self.wait(3)
         # self.play(
         #     Create(box_theoream_hint),
         #     Write(hint_text),
         # )
         # self.wait(1)
+        # self.play(
+        #     # FadeOut(VGroup(box_theoream_hint, hint_text)),
+        #     TransformMatchingShapes(VGroup(box_theoream, theoream_title, theoream_text), VGroup(box_theoream_final, theoream_title, theoream_text_final)),
+        # )
+        # self.wait(0.5)
         self.play(
-            # FadeOut(VGroup(box_theoream_hint, hint_text)),
-            TransformMatchingShapes(VGroup(box_theoream, theoream_title, theoream_text), VGroup(box_theoream_final, theoream_title, theoream_text_final)),
-        )
-        self.wait(0.5)
-        self.play(
-            FadeOut(VGroup(box_theoream_final, theoream_title, theoream_text_final)),
+            FadeOut(VGroup(box_theoream, theoream_title, theoream_text)),
         )
         self.wait(0.5)
         self.play(
@@ -4854,7 +4925,7 @@ class TitleScene(ThreeDScene):   # Scene
             Create(additivity_extra_box),
             Write(additivity_extra),
         )
-        self.wait(1)
+        self.wait(2)
         self.play(
             *[FadeOut(mob) for mob in self.mobjects]
         )
@@ -7613,13 +7684,13 @@ class TitleScene(ThreeDScene):   # Scene
 
         ########## isosceles
 
-        self.scene8_SubScene7(title)
+        # self.scene8_SubScene7(title)
 
         # self.scene8_SubScene8(title)
 
         # self.scene8_SubScene9(title)
 
-        # self.scene8_SubScene9_0(title)
+        self.scene8_SubScene9_0(title)
         # self.scene8_SubScene9_1(title)
         # self.scene8_SubScene9_2(title)
 
