@@ -2146,7 +2146,7 @@ class TitleScene(ThreeDScene):   # Scene
             Create(box),
             Write(group),
         )
-        self.wait(1)
+        self.wait(2)
 
         self.play(
             FadeOut(title_han),
@@ -6302,17 +6302,17 @@ class TitleScene(ThreeDScene):   # Scene
             Write(theoream_title),
             Write(theoream_text),
         )
-        self.wait(0.5)
+        self.wait(2)
         self.play(
             Create(box_theoream_hint),
             Write(hint_text),
         )
-        self.wait(1)
-        self.play(
-            FadeOut(VGroup(box_theoream_hint, hint_text)), 
-            TransformMatchingShapes(VGroup(box_theoream, theoream_title, theoream_text), VGroup(box_theoream_final, theoream_title, theoream_text_final)),
-        )
-        self.wait(1)
+        # self.wait(1)
+        # self.play(
+        #     FadeOut(VGroup(box_theoream_hint, hint_text)), 
+        #     TransformMatchingShapes(VGroup(box_theoream, theoream_title, theoream_text), VGroup(box_theoream_final, theoream_title, theoream_text_final)),
+        # )
+        self.wait(2)
         self.clear()
         self.wait(1)
 
