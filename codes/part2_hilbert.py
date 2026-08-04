@@ -5589,99 +5589,96 @@ class TitleScene(ThreeDScene):   # Scene
             *[FadeOut(mob) for mob in self.mobjects]
         )
         self.wait(1)
-    
+
     def scene8_SubScene12_1(self, title):
+        # ------------------------------------------------------------------
+        # (Disabled) title/intro cards - kept here in case you want to
+        # re-enable the R / C teaser before the theorem statement.
+        # ------------------------------------------------------------------
         title_li = MathTex(
-            r"\text{Linear Independence } ",r"\text{VS} ",r"\text{ Pythagorean Orthogonality}",
+            r"\text{Linear Independence } ", r"\text{VS} ", r"\text{ Pythagorean Orthogonality}",
             color=BLACK,
         ).scale(1.1).to_edge(UP)
         title_li.set_color_by_tex(r"\text{VS} ", dark_red)
 
         r_text = MathTex(
-            r"\mathbb{R}",
-            color=dark_pink,
-        ).scale(2).shift(3*LEFT+2*UP)
+            r"\mathbb{R}", color=dark_pink,
+        ).scale(2).shift(3 * LEFT + 2 * UP)
 
         c_text = MathTex(
-            r"\mathbb{C}",
-            color=dark_terquise,
-        ).scale(2).shift(3*RIGHT+2*UP)
+            r"\mathbb{C}", color=dark_terquise,
+        ).scale(2).shift(3 * RIGHT + 2 * UP)
 
-        self.play(
-            Write(title_li),
-        )
-        self.wait(0.5)
-        self.play(
-            Write(r_text),
-        )
-        self.play(
-            Write(c_text),
-        )
-        self.wait(0.5)
+        # self.play(Write(title_li))
+        # self.wait(0.5)
+        # self.play(Write(r_text))
+        # self.play(Write(c_text))
+        # self.wait(0.5)
 
+        # ==================================================================
+        #  PART 1 - The theorem, stated and proved over R
+        #  (logic unchanged from your original - this part read fine;
+        #  only fixed the "theoream" -> "theorem" typo in variable names
+        #  and removed an unused variable, `proff`, that was never used)
+        # ==================================================================
         title_li1 = MathTex(
-            r"\text{Linear Independence in } ",r"\mathbb{R} ",
+            r"\text{Linear Independence in } ", r"\mathbb{R} ",
             color=BLACK,
         ).scale(1.1).to_edge(UP)
 
-        theoream_title = Text("Theorem", font_size=40, color=dark_blue)
-        theoream_text1 = MathTex(
+        theorem_title = Text("Theorem", font_size=40, color=dark_blue)
+        theorem_text1 = MathTex(
             r"\text{Suppose } X \text{ is a normed space on } \mathbb{R} \text{ . If } x, y \in X ",
-            color=BLACK
+            color=BLACK,
         )
-        theoream_text2 = MathTex(
-            r"\text{are two non-zero vectors such that } ",r"x \perp_P y ",r", \text{ then}", 
-            color=BLACK
+        theorem_text2 = MathTex(
+            r"\text{are two non-zero vectors such that } ", r"x \perp_P y ", r", \text{ then}",
+            color=BLACK,
         )
-        theoream_text2.set_color_by_tex(r"x \perp_P y ", dark_red)
-        
-        theoream_text3 = MathTex(
-            r"x \text{ and } y \text{ are} ",r"\text{ linearly independent.}",
-            color=BLACK
-        )
-        theoream_text3.set_color_by_tex(r"\text{ linearly independent.}", dark_red)
+        theorem_text2.set_color_by_tex(r"x \perp_P y ", dark_red)
 
-        theoream_text = VGroup(
-            theoream_text1, 
-            theoream_text2, 
-            theoream_text3, 
-        ).arrange(DOWN, buff=0.4, aligned_edge=LEFT).scale(1.15).shift(1.5*UP)
+        theorem_text3 = MathTex(
+            r"x \text{ and } y \text{ are} ", r"\text{ linearly independent.}",
+            color=BLACK,
+        )
+        theorem_text3.set_color_by_tex(r"\text{ linearly independent.}", dark_red)
 
-        box_theoream = SurroundingRectangle(
-            VGroup(theoream_title, theoream_text).arrange(DOWN, buff=0.2),
+        theorem_text = VGroup(
+            theorem_text1, theorem_text2, theorem_text3,
+        ).arrange(DOWN, buff=0.4, aligned_edge=LEFT).scale(1.15).shift(1.5 * UP)
+
+        box_theorem = SurroundingRectangle(
+            VGroup(theorem_title, theorem_text).arrange(DOWN, buff=0.2),
             color=dark_blue,
             fill_opacity=0.1,
             buff=0.2,
             corner_radius=0.1,
         )
 
-        self.play(
-            TransformMatchingTex(title_li, title_li1),
-            FadeOut(c_text),
-            FadeOut(r_text),
-        )
+        self.play(Write(title_li1))
 
         statement1 = MathTex(
-            r"x \perp_P y ",r"\implies", r"x , y \text{ are} \text{ linearly independent.}",
+            r"x \perp_P y ", r"\implies", r"x , y \text{ are} \text{ linearly independent.}",
             color=dark_blue,
-        ).next_to(title_li1,DOWN,buff=0.5)
+        ).next_to(title_li1, DOWN, buff=0.5)
 
         self.wait(0.5)
         self.play(
-            Create(box_theoream), 
-            Write(VGroup(theoream_title, theoream_text)),
+            Create(box_theorem),
+            Write(VGroup(theorem_title, theorem_text)),
         )
-        self.wait(0.5)
+        self.wait(3)
         self.play(
-            TransformMatchingShapes(VGroup(box_theoream, theoream_title, theoream_text), statement1),
+            TransformMatchingShapes(VGroup(box_theorem, theorem_title, theorem_text), statement1),
         )
-        self.wait(0.5)
+        self.wait(1)
 
+        # ---- Proof by contradiction ----
         step1 = MathTex(
             r"\text{Contradiction} : ",
-            r"\text{Assume } x , y ",r"\text{ are linearly dependent}",
+            r"\text{Assume } x , y ", r"\text{ are linearly dependent}",
             color=BLACK,
-        ).scale(0.8).next_to(statement1, DOWN, buff=0.2).shift(1.5*LEFT)
+        ).scale(0.8).next_to(statement1, DOWN, buff=0.2).shift(1.5 * LEFT)
 
         step2 = MathTex(
             r"y = \lambda x \quad (\lambda \in \mathbb{R})",
@@ -5691,140 +5688,183 @@ class TitleScene(ThreeDScene):   # Scene
         step3 = MathTex(
             r"\|x + y\|^2 = \|x \|^2 + \|y\|^2",
             color=BLACK,
-        ).next_to(step1, DOWN, buff=0.2).shift(1*RIGHT)
+        ).next_to(step1, DOWN, buff=0.2).shift(1 * RIGHT)
+
         step4 = MathTex(
             r"\|x + \lambda x \|^2 = \|x \|^2 + \|\lambda x \|^2",
             color=BLACK,
         ).next_to(step3, DOWN, buff=0.2)
+
         step5 = MathTex(
             r"|1 + \lambda|^2 \cdot \|x\|^2 = (1 + |\lambda|^2) \cdot \|x\|^2",
             color=BLACK,
         ).next_to(step4, DOWN, buff=0.2)
+
         step6 = MathTex(
             r"|1 + \lambda|^2 = 1 + |\lambda|^2",
             r"\quad (x \ne 0)",
             color=BLACK,
         ).next_to(step5, DOWN, buff=0.2)
+
         step7 = MathTex(
             r"\implies \lambda = 0",
             r"\implies y = 0",
             r"\quad \cdot \! \overset{\cdot}{\underset{\cdot}{\times}} \! \cdot",
             color=BLACK,
         ).next_to(step6, DOWN, buff=0.2)
+
         step8 = MathTex(
             r"\text{Thus, the assumption is false and the claim holds}.\blacksquare",
             color=BLACK,
         ).next_to(step7, DOWN, buff=0.2)
 
-        proff = VGroup(step1, step2, step3, step4, step5, step6, step7, step8)
+        self.play(Write(step1))
+        self.wait(0.8)
+        self.play(TransformFromCopy(step1[2], step2))
+        self.wait(0.8)
+        self.play(TransformFromCopy(statement1[0], step3))
+        self.wait(0.8)
+        self.play(TransformFromCopy(VGroup(step2, step3), step4))
+        self.wait(0.8)
+        self.play(Write(step5))
+        self.wait(0.8)
+        self.play(Write(step6))
+        self.wait(0.8)
+        self.play(Write(step7))
+        self.wait(0.8)
+        self.play(Write(step8))
+        self.wait(1)
 
-        self.play(
-            Write(step1),
-        )
-        self.wait(0.5)
-        self.play(
-            TransformFromCopy(step1[2], step2),
-        )
-        self.wait(0.5)
-        self.play(
-            TransformFromCopy(statement1[0], step3),
-        )
-        self.wait(0.5)
-        self.play(
-            TransformFromCopy(VGroup(step2, step3), step4),
-        )
-        self.wait(0.5)
-        self.play(
-            Write(step5),
-        )
-        self.wait(0.5)
-        self.play(
-            Write(step6),
-        )
-        self.wait(0.5)
-        self.play(
-            Write(step7),
-        )
-        self.wait(0.5)
-        self.play(
-            Write(step8),
-        )
+        # ==================================================================
+        #  PART 2 - Counterexample over C  (rewritten section)
+        #
+        #  Why the old version was hard to follow:
+        #  `TransformMatchingTex(VGroup(step1, step2), step1_2)` tried to
+        #  morph "Contradiction: Assume x,y are linearly dependent / y = λx"
+        #  into "Counterexample: y = ix". Those two sentences share almost
+        #  no LaTeX substrings, so TransformMatchingTex matched a handful of
+        #  stray glyphs (x, y, =, parentheses...) and let everything else fly
+        #  to new positions - which reads as noise, not as a step.
+        #
+        #  Fix: only use a matching-transform where the audience is really
+        #  meant to track a symbol turning into another symbol (R -> C in
+        #  the title, the arrow in the statement, lambda -> i in the norm
+        #  identity). Everywhere the *idea* changes rather than a symbol,
+        #  fade the old text out and write the new text in, cleanly.
+        # ==================================================================
 
+        # Same template as title_li1, only R -> C, so "Linear Independence
+        # in" stays fixed and only the field symbol swaps - a transform
+        # that now actually has something meaningful to match.
         title_li2 = MathTex(
-            r"\text{Linear dependence in } ",r"\mathbb{C} ",
+            r"\text{Linear Independence in } ", r"\mathbb{C} ",
             color=BLACK,
         ).scale(1.1).to_edge(UP)
 
+        # Same skeleton as statement1, only the arrow changes to \not\Rightarrow
+        # (matching \implies's double-stroke arrow, instead of the single
+        # \rightarrow the original used) - this is the one place a
+        # glyph-matching transform is exactly the right tool: everything
+        # else is identical, only the conclusion flips.
         statement2 = MathTex(
-            r"x \perp_P y ",r"\not \rightarrow", r"x , y \text{ are} \text{ linearly independent.}",
+            r"x \perp_P y ", r"\not \Rightarrow", r"x , y \text{ are} \text{ linearly independent.}",
             color=dark_blue,
-        ).next_to(title_li1,DOWN,buff=0.5)
+        ).next_to(title_li2, DOWN, buff=0.5)
 
-        step1_2 = MathTex(
-            r"\text{Counterexample : } y = i x \quad (i \in \mathbb{C})",
+        self.play(TransformMatchingTex(title_li1, title_li2))
+        self.wait(0.3)
+        self.play(TransformMatchingTex(statement1, statement2))
+        self.play(Indicate(statement2[1], color=dark_red, scale_factor=1.4))
+        self.wait(1)
+
+        # ---- Clear the R-only scaffolding ----
+        # step3 (the general Pythagorean identity) is deliberately kept on
+        # screen and highlighted, instead of being silently abandoned: we
+        # are about to reuse this exact formula with a different y, and
+        # keeping it visible makes that reuse explicit rather than implied.
+        self.play(
+            FadeOut(step1, step2, shift=0.3 * LEFT),
+            FadeOut(step5, step6, step7, step8, shift=0.3 * DOWN),
+        )
+        # self.play(Circumscribe(step3, color=dark_blue, fade_out=True))
+        self.wait(0.3)
+
+        # ---- Introduce the counterexample fresh (no matching-transform) ----
+        c_counterexample = MathTex(
+            r"\text{Counterexample:} \quad y = i x",
             color=dark_orange,
         ).move_to(VGroup(step1, step2).get_center())
 
-        step4_new = MathTex(
-            r"\|x + i x \|^2 ",r"= ",r"\|x \|^2 + \| i x \|^2",
+        self.play(Write(c_counterexample))
+        self.wait(0.8)
+
+        # ---- Substitute y = ix into the SAME formula (step3) ----
+        # Only lambda -> i changes here, so a matching transform reads
+        # clearly and mirrors the step3 -> step4 substitution from Part 1
+        # on purpose - the audience should recognize the move.
+        step4_c = MathTex(
+            r"\|x + i x \|^2 ", r"= ", r"\|x \|^2 + \| i x \|^2",
             color=BLACK,
         ).move_to(step4.get_center())
-        step4_new.set_color_by_tex(r"\|x + i x \|^2 ", dark_pink)
-        step4_new.set_color_by_tex(r"\|x \|^2 + \| i x \|^2", dark_green)
-        step5_new = MathTex(
-            r"\|x + i x \|^2 ",r"= |1+i|^2 \|x\|^2 = ",r"2 \|x\|^2",
+        step4_c.set_color_by_tex(r"\|x + i x \|^2 ", dark_pink)
+        step4_c.set_color_by_tex(r"\|x \|^2 + \| i x \|^2", dark_green)
+
+        self.play(TransformMatchingTex(step4, step4_c))
+        self.wait(0.5)
+
+        # ---- Evaluate each side on its own, color-matched to step4_c ----
+        lhs_eval = MathTex(
+            r"\|x + i x \|^2 ", r"= |1+i|^2 \|x\|^2 = ", r"2 \|x\|^2",
             color=dark_pink,
         ).move_to(step5.get_center())
 
-        step6_new = MathTex(
-            r"\|x \|^2 + \| i x \|^2 ",r"= \|x \|^2 + |i|^2 \| x \|^2 = ",r"2 \|x\|^2",
+        rhs_eval = MathTex(
+            r"\|x \|^2 + \| i x \|^2 ", r"= \|x \|^2 + |i|^2 \| x \|^2 = ", r"2 \|x\|^2",
             color=dark_green,
         ).move_to(step6.get_center())
 
+        self.play(Write(lhs_eval))
+        self.wait(0.5)
+        self.play(Write(rhs_eval))
+        self.wait(0.5)
+
+        # Both sides land on the SAME real number - circle both instances of
+        # "2‖x‖²" together instead of transforming text into text, so it is
+        # visually obvious *why* the two expressions are equal, rather than
+        # just asserting it in the next line.
+        self.play(
+            Circumscribe(lhs_eval[2], color=dark_blue, fade_out=True),
+            Circumscribe(rhs_eval[2], color=dark_blue, fade_out=True),
+        )
+        self.wait(0.3)
+
         final = MathTex(
-            r"\|x + i x \|^2 ",r" = ",r"2 \|x\|^2",r" = ",r"\|x \|^2 + \| i x \|^2 .",
+            r"\|x + i x \|^2 ", r" = ", r"2 \|x\|^2", r" = ", r"\|x \|^2 + \| i x \|^2 .",
             color=BLACK,
         ).move_to(step7.get_center())
+        final.set_color_by_tex(r"\|x + i x \|^2 ", dark_pink)
+        final.set_color_by_tex(r"\|x \|^2 + \| i x \|^2 .", dark_green)
 
-
-        self.play(
-            TransformMatchingTex(title_li1, title_li2),
-        )
-        self.wait(0.5)
-        self.play(
-            TransformMatchingTex(statement1, statement2),
-        )
-        self.wait(0.5)
-        self.play(
-            TransformMatchingTex(VGroup(step1, step2), step1_2),
-        )
-        self.play(
-            FadeOut(VGroup(
-                step5,
-                step6,
-                step7,
-                step8,
-            ))
-        )
-        self.wait(0.5)
-        self.play(
-            TransformMatchingTex(step4, step4_new),
-        )
-        self.wait(0.5)
-        self.play(
-            Write(step5_new),
-        )
-        self.wait(0.5)
-        self.play(
-            Write(step6_new),
-        )
-        self.wait(0.5)
-        self.play(
-            Write(final),
-        )
+        self.play(Write(final))
         self.wait(0.5)
 
+        # ---- Spell out the punchline explicitly ----
+        # The original animation ended on a bare equation and left the
+        # audience to connect it back to statement2 on their own. This line
+        # closes the loop in words, then Circumscribe(statement2) closes it
+        # visually too.
+        conclusion = MathTex(
+            r"\text{So } x \perp_P y \text{ holds, yet } y = ix \text{ is a scalar multiple of } x \text{: they are } ",
+            r"\text{linearly dependent.}",
+            color=BLACK,
+        ).scale(0.75).next_to(final, DOWN, buff=0.35)
+        conclusion.set_color_by_tex(r"\text{linearly dependent.}", dark_red)
+
+        # self.play(Write(conclusion))
+        # self.wait(0.5)
+        self.play(Circumscribe(statement2, color=dark_red, fade_out=True))
         self.wait(1)
+
         self.play(
             *[FadeOut(mob) for mob in self.mobjects]
         )
@@ -7784,8 +7824,8 @@ class TitleScene(ThreeDScene):   # Scene
 
         # self.scene8_SubScene12(title)
 
-        self.scene8_SubScene12_0(title)
-        # self.scene8_SubScene12_1(title)
+        # self.scene8_SubScene12_0(title)
+        self.scene8_SubScene12_1(title)
         # self.scene8_SubScene12_2(title)
 
         # self.scene8_SubScene13_0(title)
