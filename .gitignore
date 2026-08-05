@@ -2,3 +2,4 @@ ignored/
 codes/manim-env/
 codes/__pycache__/
 codes/media/
+.vscode/
